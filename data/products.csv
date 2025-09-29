@@ -1,0 +1,13 @@
+type,id,name,category,language,rarity,price,stock,img
+card,1,Charizard VMAX 101,Pokémon,ES,UR,249.99,True,assets/img/card_charizard.webp
+card,2,Luffy Gear 5 202,One Piece,JP,SR,139.9,True,assets/img/card_luffy.webp
+card,3,Agumon Alt 150,Digimon,EN,R,29.95,True,assets/img/card_agumon.webp
+card,4,Goku SSJ Blue 330,Dragon Ball,JP,UR,199.0,False,assets/img/card_goku.webp
+card,5,Naruto Sage 115,Naruto,EN,SR,89.0,True,assets/img/card_naruto.webp
+card,6,Black Lotus Proxy 001,Magic,EN,UR,499.0,True,assets/img/card_lotus.webp
+box,101,Pokémon Box Scarlet,Pokémon,ES,BOX,149.9,True,assets/img/box_pokemon.webp
+box,102,One Piece Romance Dawn,One Piece,JP,BOX,179.9,True,assets/img/box_onepiece.webp
+box,103,Digimon BT-15,Digimon,EN,BOX,129.0,True,assets/img/box_digimon.webp
+box,104,Dragon Ball Fusion World,Dragon Ball,JP,BOX,159.0,False,assets/img/box_db.webp
+box,105,Naruto Booster Classic,Naruto,EN,BOX,99.0,True,assets/img/box_naruto.webp
+box,106,Magic Play Booster,Magic,EN,BOX,189.0,True,assets/img/box_magic.webp
