@@ -162,6 +162,7 @@ function abrirImagenGrande(src) {
   let productos = [];
   let favoritos = JSON.parse(localStorage.getItem('fav_uzutcg')||'[]');
 
+  function favId(p, idx){ return p.id ?? p.imagen ?? (p.nombre || ('idx-'+(idx+1))); }
   function inFav(id){ return favoritos.includes(id); }
   function toggleFav(id){
     if(inFav(id)) favoritos = favoritos.filter(x=>x!==id);
@@ -171,7 +172,11 @@ function abrirImagenGrande(src) {
   }
 
   function badgeStock(p){
-    return p.stock && p.stock>0 ? '<span class="badge">Stock</span>' : '';
+    if(Number(p.stock) > 0){
+      return '<span class="badge stock-ok">En stock</span>';
+    } else {
+      return '<span class="badge stock-off">Sin stock</span>';
+    }
   }
 
   function card(p, idx){
@@ -182,8 +187,9 @@ function abrirImagenGrande(src) {
     ].join('');
     return `
     <article class="card">
-      <div style="position:relative">
+      <div class="card-img-wrap">
         ${badgeStock(p)}
+        ${inFav(favId(p, idx)) ? `<span class="fav-badge">★ Favorito</span>` : ``}
         <img class="card-img" src="${p.imagen}" alt="${p.nombre}" onerror="this.src='img/otros/1.jpg'"/>
       </div>
       <div class="card-body">
@@ -192,14 +198,13 @@ function abrirImagenGrande(src) {
           ${p.categoria ? `<span class="tag">${p.categoria}</span>`:''}
           ${p.idioma ? `<span class="tag">Idioma: ${p.idioma}</span>`:''}
           ${p.rareza ? `<span class="tag">R: ${p.rareza}</span>`:''}
-          ${typeof p.stock !== 'undefined' ? `<span class="stock-pill"><span class="stock-dot"></span> Stock: ${p.stock}</span>`:''}
+          ${typeof p.stock !== 'undefined' ? `<span class="stock-pill ${Number(p.stock)>0?'ok':'off'}"><span class="stock-dot ${Number(p.stock)>0?'ok':'off'}"></span> Stock: ${p.stock||0}</span>`:''}
         </div>
-        <div>ID: ${p.id ?? idx+1}</div>
         <div class="price">${Number(p.precio).toFixed(2)} €</div>
         <div class="card-actions">
           <button class="btn-outline" data-big="${p.imagen}">Ver grande</button>
-          <button class="btn-heart" data-fav="${p.id ?? idx+1}">
-            <span class="heart ${inFav(p.id ?? idx+1) ? 'on':''}">❤</span> Favorito
+          <button class="btn-heart ${inFav(favId(p, idx)) ? 'active':''}" data-fav="${favId(p, idx)}">
+            <span class="heart">❤</span> ${inFav(favId(p, idx)) ? 'Quitar' : 'Favorito'}
           </button>
         </div>
       </div>
@@ -218,7 +223,7 @@ function abrirImagenGrande(src) {
     const max = Number(precio.value||1000);
     arr = arr.filter(p=> Number(p.precio)<=max);
     if(soloStock.checked) arr = arr.filter(p=> Number(p.stock)>0);
-    if(soloFav.checked) arr = arr.filter((_,i)=> inFav((_.id ?? i+1)));
+    if(soloFav.checked) arr = arr.filter((p,i)=> inFav(favId(p,i)));
 
     // ordenar
     const ord = ordenar.value;
@@ -239,7 +244,10 @@ function abrirImagenGrande(src) {
       btn.addEventListener('click', e=> abrirGrande(e.currentTarget.dataset.big));
     });
     grid.querySelectorAll('[data-fav]').forEach(btn=>{
-      btn.addEventListener('click', e=> toggleFav(e.currentTarget.dataset.fav));
+      btn.addEventListener('click', e=> {
+        const id = e.currentTarget.dataset.fav;
+        toggleFav(id);
+      });
     });
   }
 

@@ -794,3 +794,26 @@ img[loading="lazy"] {
 /* Stock pill */
 .stock-pill{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;background:#eefbf4;color:#0a7e3b;border:1px solid #cfeeDF;border-radius:999px;padding:4px 10px;font-weight:700}
 .stock-dot{width:8px;height:8px;border-radius:50%;background:#13c85a}
+
+
+/* --- Image containment and card sizing --- */
+.card-img-wrap{position:relative;background:#fff;display:flex;align-items:center;justify-content:center}
+.card-img{object-fit:contain;width:100%;height:240px} /* tamaño decente y completa */
+@media (max-width: 520px){ .card-img{height:200px} }
+
+/* --- Stock badges --- */
+.badge.stock-ok{background:#13c85a}
+.badge.stock-off{background:#e74c3c}
+
+/* --- Stock pill color states --- */
+.stock-pill{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;border-radius:999px;padding:4px 10px;font-weight:700;border:1px solid}
+.stock-pill.ok{background:#eefbf4;color:#0a7e3b;border-color:#cfeedf}
+.stock-pill.off{background:#ffeeee;color:#8c1f1f;border-color:#ffd0d0}
+.stock-dot{width:8px;height:8px;border-radius:50%}
+.stock-dot.ok{background:#13c85a}
+.stock-dot.off{background:#e74c3c}
+
+/* --- Favorites visual marker --- */
+.fav-badge{position:absolute;right:10px;top:10px;background:rgba(255,215,0,.95);color:#111;padding:6px 10px;border-radius:999px;font-weight:800;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.btn-heart .heart{opacity:.5;transition:.15s}
+.btn-heart.active .heart{opacity:1}
