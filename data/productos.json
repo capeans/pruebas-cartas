@@ -7,8 +7,7 @@
     "precio": 50,
     "stock": 10,
     "imagen": "img/cajas/digimon/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "caja",
@@ -18,8 +17,7 @@
     "precio": 55,
     "stock": 10,
     "imagen": "img/cajas/digimon/2.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "caja",
@@ -29,8 +27,7 @@
     "precio": 60,
     "stock": 10,
     "imagen": "img/cajas/one_piece/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "caja",
@@ -40,8 +37,7 @@
     "precio": 65,
     "stock": 10,
     "imagen": "img/cajas/one_piece/2.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "caja",
@@ -51,8 +47,7 @@
     "precio": 70,
     "stock": 10,
     "imagen": "img/cajas/pokemon/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "caja",
@@ -62,8 +57,7 @@
     "precio": 75,
     "stock": 10,
     "imagen": "img/cajas/pokemon/2.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "caja",
@@ -73,8 +67,7 @@
     "precio": 80,
     "stock": 10,
     "imagen": "img/cajas/magic/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": true
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "caja",
@@ -84,8 +77,7 @@
     "precio": 85,
     "stock": 10,
     "imagen": "img/cajas/magic/2.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "caja",
@@ -95,8 +87,7 @@
     "precio": 90,
     "stock": 10,
     "imagen": "img/cajas/dragonball/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "caja",
@@ -106,8 +97,7 @@
     "precio": 95,
     "stock": 10,
     "imagen": "img/cajas/dragonball/2.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "caja",
@@ -117,8 +107,7 @@
     "precio": 100,
     "stock": 10,
     "imagen": "img/cajas/yugioh/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": true
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "caja",
@@ -128,8 +117,7 @@
     "precio": 105,
     "stock": 10,
     "imagen": "img/cajas/yugioh/2.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "abrirEnDirecto": true
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
   },
   {
     "tipo": "carta",
@@ -140,8 +128,7 @@
     "stock": 8,
     "imagen": "img/cartas/digimon/1.png",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "R",
-    "abrirEnDirecto": true
+    "rareza": "R"
   },
   {
     "tipo": "carta",
@@ -152,8 +139,7 @@
     "stock": 8,
     "imagen": "img/cartas/digimon/1.png",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "SR",
-    "abrirEnDirecto": false
+    "rareza": "SR"
   },
   {
     "tipo": "carta",
@@ -164,8 +150,7 @@
     "stock": 8,
     "imagen": "img/cartas/digimon/1.png",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "R",
-    "abrirEnDirecto": false
+    "rareza": "R"
   },
   {
     "tipo": "carta",
@@ -176,8 +161,7 @@
     "stock": 8,
     "imagen": "img/cartas/digimon/2.png",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "SR",
-    "abrirEnDirecto": true
+    "rareza": "SR"
   },
   {
     "tipo": "carta",
@@ -188,8 +172,7 @@
     "stock": 8,
     "imagen": "img/cartas/digimon/3.jpg",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "SSR",
-    "abrirEnDirecto": false
+    "rareza": "SSR"
   },
   {
     "tipo": "carta",
@@ -200,8 +183,7 @@
     "stock": 8,
     "imagen": "img/cartas/onepiece/1.png",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "SSR",
-    "abrirEnDirecto": false
+    "rareza": "SSR"
   },
   {
     "tipo": "carta",
@@ -212,8 +194,7 @@
     "stock": 8,
     "imagen": "img/cartas/onepiece/2.jpg",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "UR",
-    "abrirEnDirecto": false
+    "rareza": "UR"
   },
   {
     "tipo": "carta",
@@ -224,8 +205,7 @@
     "stock": 8,
     "imagen": "img/cartas/onepiece/3.jpg",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "R",
-    "abrirEnDirecto": false
+    "rareza": "R"
   },
   {
     "tipo": "carta",
@@ -236,8 +216,7 @@
     "stock": 8,
     "imagen": "img/cartas/pokemon/1.png",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "R",
-    "abrirEnDirecto": true
+    "rareza": "R"
   },
   {
     "tipo": "carta",
@@ -248,8 +227,7 @@
     "stock": 8,
     "imagen": "img/cartas/pokemon/3.jpg",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "SR",
-    "abrirEnDirecto": true
+    "rareza": "SR"
   },
   {
     "tipo": "carta",
@@ -260,8 +238,7 @@
     "stock": 8,
     "imagen": "img/cartas/pokemon/5.jpg",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "SSR",
-    "abrirEnDirecto": false
+    "rareza": "SSR"
   },
   {
     "tipo": "carta",
@@ -272,8 +249,7 @@
     "stock": 8,
     "imagen": "img/cartas/pokemon/1.png",
     "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
-    "rareza": "R",
-    "abrirEnDirecto": true
+    "rareza": "R"
   },
   {
     "id": 1,
@@ -284,8 +260,7 @@
     "precio": 49.9,
     "stock": 10,
     "imagen": "img/cajas/digimon/1.png",
-    "descripcion": "Caja de Digimon en Inglés. Edición estándar.",
-    "abrirEnDirecto": true
+    "descripcion": "Caja de Digimon en Inglés. Edición estándar."
   },
   {
     "id": 2,
@@ -296,8 +271,7 @@
     "precio": 39.9,
     "stock": 0,
     "imagen": "img/cajas/digimon/2.png",
-    "descripcion": "Caja de Digimon en Japonés. Edición estándar.",
-    "abrirEnDirecto": true
+    "descripcion": "Caja de Digimon en Japonés. Edición estándar."
   },
   {
     "id": 3,
@@ -308,8 +282,7 @@
     "precio": 39.9,
     "stock": 5,
     "imagen": "img/cajas/digimon/3.png",
-    "descripcion": "Caja de Digimon en Japonés. Edición estándar.",
-    "abrirEnDirecto": true
+    "descripcion": "Caja de Digimon en Japonés. Edición estándar."
   },
   {
     "id": 4,
@@ -320,8 +293,7 @@
     "precio": 39.9,
     "stock": 15,
     "imagen": "img/cajas/digimon/4.png",
-    "descripcion": "Caja de Digimon en Japonés. Edición estándar.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja de Digimon en Japonés. Edición estándar."
   },
   {
     "id": 5,
@@ -332,8 +304,7 @@
     "precio": 39.9,
     "stock": 0,
     "imagen": "img/cajas/magic/1.png",
-    "descripcion": "Caja de Magic en Español. Edición estándar.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja de Magic en Español. Edición estándar."
   },
   {
     "id": 6,
@@ -344,8 +315,7 @@
     "precio": 69.9,
     "stock": 0,
     "imagen": "img/cajas/magic/2.png",
-    "descripcion": "Caja de Magic en Inglés. Edición estándar.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja de Magic en Inglés. Edición estándar."
   },
   {
     "id": 7,
@@ -356,8 +326,7 @@
     "precio": 39.9,
     "stock": 15,
     "imagen": "img/cajas/magic/3.png",
-    "descripcion": "Caja de Magic en Español. Edición estándar.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja de Magic en Español. Edición estándar."
   },
   {
     "id": 8,
@@ -368,8 +337,7 @@
     "precio": 39.9,
     "stock": 15,
     "imagen": "img/cajas/magic/4.png",
-    "descripcion": "Caja de Magic en Inglés. Edición estándar.",
-    "abrirEnDirecto": false
+    "descripcion": "Caja de Magic en Inglés. Edición estándar."
   },
   {
     "id": 9,
@@ -381,8 +349,7 @@
     "stock": 20,
     "imagen": "img/cartas/digimon/1.png",
     "rareza": "R",
-    "descripcion": "Carta de Digimon (R) en Español.",
-    "abrirEnDirecto": false
+    "descripcion": "Carta de Digimon (R) en Español."
   },
   {
     "id": 10,
@@ -394,8 +361,7 @@
     "stock": 8,
     "imagen": "img/cartas/digimon/2.png",
     "rareza": "R",
-    "descripcion": "Carta de Digimon (R) en Japonés.",
-    "abrirEnDirecto": false
+    "descripcion": "Carta de Digimon (R) en Japonés."
   },
   {
     "id": 11,
@@ -407,8 +373,7 @@
     "stock": 20,
     "imagen": "img/cartas/digimon/3.jpg",
     "rareza": "SR",
-    "descripcion": "Carta de Digimon (SR) en Español.",
-    "abrirEnDirecto": false
+    "descripcion": "Carta de Digimon (SR) en Español."
   },
   {
     "id": 12,
@@ -420,8 +385,7 @@
     "stock": 0,
     "imagen": "img/cartas/digimon/3.png",
     "rareza": "R",
-    "descripcion": "Carta de Digimon (R) en Inglés.",
-    "abrirEnDirecto": true
+    "descripcion": "Carta de Digimon (R) en Inglés."
   },
   {
     "id": 13,
@@ -433,8 +397,7 @@
     "stock": 20,
     "imagen": "img/cartas/pokemon/1.png",
     "rareza": "SR",
-    "descripcion": "Carta de Pokemon (SR) en Japonés.",
-    "abrirEnDirecto": false
+    "descripcion": "Carta de Pokemon (SR) en Japonés."
   },
   {
     "id": 14,
@@ -446,8 +409,7 @@
     "stock": 20,
     "imagen": "img/cartas/pokemon/2.png",
     "rareza": "SR",
-    "descripcion": "Carta de Pokemon (SR) en Español.",
-    "abrirEnDirecto": false
+    "descripcion": "Carta de Pokemon (SR) en Español."
   },
   {
     "id": 15,
@@ -459,8 +421,7 @@
     "stock": 20,
     "imagen": "img/cartas/pokemon/3.jpg",
     "rareza": "R",
-    "descripcion": "Carta de Pokemon (R) en Inglés.",
-    "abrirEnDirecto": false
+    "descripcion": "Carta de Pokemon (R) en Inglés."
   },
   {
     "id": 16,
@@ -472,8 +433,7 @@
     "stock": 20,
     "imagen": "img/cartas/pokemon/3.png",
     "rareza": "SR",
-    "descripcion": "Carta de Pokemon (SR) en Japonés.",
-    "abrirEnDirecto": false
+    "descripcion": "Carta de Pokemon (SR) en Japonés."
   },
   {
     "id": 17,
@@ -485,7 +445,6 @@
     "stock": 20,
     "imagen": "img/cartas/pokemon/5.jpg",
     "rareza": "SSR",
-    "descripcion": "Carta de Pokemon (SSR) en Inglés.",
-    "abrirEnDirecto": true
+    "descripcion": "Carta de Pokemon (SSR) en Inglés."
   }
 ]
