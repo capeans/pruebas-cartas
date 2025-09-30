@@ -188,7 +188,12 @@ function abrirImagenGrande(src) {
       </div>
       <div class="card-body">
         <div class="card-title">${p.nombre}</div>
-        <div class="tags">${tags}</div>
+        <div class="tags">
+          ${p.categoria ? `<span class="tag">${p.categoria}</span>`:''}
+          ${p.idioma ? `<span class="tag">Idioma: ${p.idioma}</span>`:''}
+          ${p.rareza ? `<span class="tag">R: ${p.rareza}</span>`:''}
+          ${typeof p.stock !== 'undefined' ? `<span class="stock-pill"><span class="stock-dot"></span> Stock: ${p.stock}</span>`:''}
+        </div>
         <div>ID: ${p.id ?? idx+1}</div>
         <div class="price">${Number(p.precio).toFixed(2)} €</div>
         <div class="card-actions">
@@ -252,12 +257,16 @@ function abrirImagenGrande(src) {
   }
 
   // eventos
-  [nombre,categoria,idioma,rareza,precio,soloStock,soloFav,ordenar].forEach(el=>{
+  [precio].forEach(el=>{
     el && el.addEventListener('input', ()=> {
-      if(el===precio) precioValor.textContent = precio.value;
-      render();
+      precioValor.textContent = precio.value;
     });
   });
+  // Ordenar puede actuar en vivo
+  ordenar && ordenar.addEventListener('change', ()=> render());
+  // Enter en el campo de nombre = Buscar
+  nombre && nombre.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); render(); }});
+  // Click Buscar aplica filtros
   btnBuscar.addEventListener('click', e=>{ e.preventDefault(); render(); });
   btnLimpiar.addEventListener('click', e=>{
     e.preventDefault();

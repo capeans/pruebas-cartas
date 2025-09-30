@@ -51,8 +51,20 @@
     <label>Precio ≤ <span id="precio-valor">150</span>€</label>
     <input id="filtro-precio" type="range" min="0" max="1000" value="150" />
 
-    <label class="check"><input id="solo-stock" type="checkbox" /> Solo en stock</label>
-    <label class="check"><input id="solo-favoritos" type="checkbox" /> Favoritos</label>
+    
+    <div class="switches">
+      <label class="switch">
+        <input id="solo-stock" type="checkbox" />
+        <span class="slider"></span>
+        <span class="switch-text">Solo en stock</span>
+      </label>
+      <label class="switch">
+        <input id="solo-favoritos" type="checkbox" />
+        <span class="slider"></span>
+        <span class="switch-text">Favoritos</span>
+      </label>
+    </div>
+        
 
     <div class="acciones-filtros">
       <button id="btn-limpiar" class="btn-secondary">Limpiar</button>

@@ -779,3 +779,18 @@ img[loading="lazy"] {
   .catalogo{flex-direction:column}
   .filtros{position:static;width:100%}
 }
+
+
+/* --- Pretty switches --- */
+.switches{display:flex;flex-direction:column;gap:10px;margin:12px 0}
+.switch{display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+.switch input{display:none}
+.switch .slider{position:relative;width:44px;height:24px;background:#e6e6e9;border-radius:999px;transition:.2s}
+.switch .slider::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;background:#fff;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:.2s}
+.switch input:checked + .slider{background:#6b5cff}
+.switch input:checked + .slider::after{left:23px}
+.switch .switch-text{font-weight:600}
+
+/* Stock pill */
+.stock-pill{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;background:#eefbf4;color:#0a7e3b;border:1px solid #cfeeDF;border-radius:999px;padding:4px 10px;font-weight:700}
+.stock-dot{width:8px;height:8px;border-radius:50%;background:#13c85a}
