@@ -738,3 +738,44 @@ img[loading="lazy"] {
   box-shadow: 0 14px 40px rgba(0,0,0,.08);
 }
 .hero-visual::before { content: none; }
+
+
+/* === Catálogo con sidebar === */
+.catalogo{display:flex;gap:24px;align-items:flex-start;padding:16px}
+.filtros{position:sticky;top:16px;flex:0 0 300px;background:#fff;border:1px solid #e6e6e9;border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.filtros label{display:block;font-weight:600;margin:10px 0 6px}
+.filtros input[type="text"], .filtros select{width:100%;padding:10px 12px;border:1px solid #e6e6e9;border-radius:10px}
+.filtros .check{font-weight:500;display:flex;gap:8px;align-items:center;margin:8px 0}
+.filtros input[type="range"]{width:100%}
+.acciones-filtros{display:flex;gap:10px;margin-top:12px}
+.btn-primary, .btn-secondary{padding:10px 14px;border-radius:10px;border:0;cursor:pointer}
+.btn-primary{background:#6b5cff;color:#fff}
+.btn-secondary{background:#f1f1f5;color:#111}
+
+/* Resultados */
+.resultados{flex:1}
+.cabecera-resultados{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-weight:600}
+.cabecera-resultados select{padding:8px 10px;border:1px solid #e6e6e9;border-radius:10px}
+
+/* Grid de productos: 4–5 por fila auto */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.card{background:#fff;border:1px solid #e6e6e9;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 4px 14px rgba(0,0,0,.05)}
+.card-img{aspect-ratio:4/3;object-fit:cover;width:100%;background:#0b1221}
+.badge{position:absolute;left:10px;top:10px;background:#13c85a;color:#fff;padding:6px 10px;border-radius:999px;font-size:.85rem;font-weight:700}
+.card-body{padding:12px;display:flex;flex-direction:column;gap:8px}
+.card-title{font-weight:800}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.75rem;border:1px solid #e6e6e9;border-radius:999px;padding:4px 8px;background:#fafafe}
+.price{font-weight:800;font-size:1.1rem}
+.card-actions{display:flex;gap:10px;margin-top:auto}
+.card-actions button{flex:1;padding:10px;border-radius:10px;border:0;cursor:pointer}
+.btn-outline{background:#fff;border:1px solid #e6e6e9}
+.btn-heart{background:#f8f5ff}
+.heart.on{filter:grayscale(0)}
+.heart{filter:grayscale(1)}
+
+/* Responsive tweaks */
+@media (max-width: 900px){
+  .catalogo{flex-direction:column}
+  .filtros{position:static;width:100%}
+}

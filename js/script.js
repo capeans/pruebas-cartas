@@ -137,3 +137,162 @@ function abrirImagenGrande(src) {
     });
   });
 
+
+
+// ===== Catálogo con sidebar (cartas y cajas) =====
+(function(){
+  const page = document.body.getAttribute('data-page') || '';
+  if (!['cartas','cajas'].includes(page)) return;
+
+  const $ = sel => document.querySelector(sel);
+  const grid = $('#grid-productos');
+  const countEl = $('#count');
+  const ordenar = $('#ordenar');
+  const nombre = $('#filtro-nombre');
+  const categoria = $('#filtro-categoria');
+  const idioma = $('#filtro-idioma');
+  const rareza = $('#filtro-rareza');
+  const precio = $('#filtro-precio');
+  const precioValor = $('#precio-valor');
+  const soloStock = $('#solo-stock');
+  const soloFav = $('#solo-favoritos');
+  const btnLimpiar = $('#btn-limpiar');
+  const btnBuscar = $('#btn-buscar');
+
+  let productos = [];
+  let favoritos = JSON.parse(localStorage.getItem('fav_uzutcg')||'[]');
+
+  function inFav(id){ return favoritos.includes(id); }
+  function toggleFav(id){
+    if(inFav(id)) favoritos = favoritos.filter(x=>x!==id);
+    else favoritos.push(id);
+    localStorage.setItem('fav_uzutcg', JSON.stringify(favoritos));
+    render();
+  }
+
+  function badgeStock(p){
+    return p.stock && p.stock>0 ? '<span class="badge">Stock</span>' : '';
+  }
+
+  function card(p, idx){
+    const tags = [
+      p.categoria ? `<span class="tag">${p.categoria}</span>`:'' ,
+      p.idioma ? `<span class="tag">Idioma: ${p.idioma}</span>`:'' ,
+      p.rareza ? `<span class="tag">R: ${p.rareza}</span>`:''
+    ].join('');
+    return `
+    <article class="card">
+      <div style="position:relative">
+        ${badgeStock(p)}
+        <img class="card-img" src="${p.imagen}" alt="${p.nombre}" onerror="this.src='img/otros/1.jpg'"/>
+      </div>
+      <div class="card-body">
+        <div class="card-title">${p.nombre}</div>
+        <div class="tags">${tags}</div>
+        <div>ID: ${p.id ?? idx+1}</div>
+        <div class="price">${Number(p.precio).toFixed(2)} €</div>
+        <div class="card-actions">
+          <button class="btn-outline" data-big="${p.imagen}">Ver grande</button>
+          <button class="btn-heart" data-fav="${p.id ?? idx+1}">
+            <span class="heart ${inFav(p.id ?? idx+1) ? 'on':''}">❤</span> Favorito
+          </button>
+        </div>
+      </div>
+    </article>`;
+  }
+
+  function render(){
+    let arr = [...productos];
+    // búsqueda
+    const q = (nombre.value||'').toLowerCase();
+    if(q) arr = arr.filter(p=> (p.nombre||'').toLowerCase().includes(q));
+    // filters
+    if(categoria.value) arr = arr.filter(p=> (p.categoria||'') === categoria.value);
+    if(idioma.value) arr = arr.filter(p=> (p.idioma||'') === idioma.value);
+    if(rareza.value) arr = arr.filter(p=> (p.rareza||'') === rareza.value);
+    const max = Number(precio.value||1000);
+    arr = arr.filter(p=> Number(p.precio)<=max);
+    if(soloStock.checked) arr = arr.filter(p=> Number(p.stock)>0);
+    if(soloFav.checked) arr = arr.filter((_,i)=> inFav((_.id ?? i+1)));
+
+    // ordenar
+    const ord = ordenar.value;
+    const by = {
+      'name-asc':  (a,b)=> (a.nombre||'').localeCompare(b.nombre||''),
+      'name-desc': (a,b)=> (b.nombre||'').localeCompare(a.nombre||''),
+      'price-asc': (a,b)=> Number(a.precio)-Number(b.precio),
+      'price-desc':(a,b)=> Number(b.precio)-Number(a.precio),
+      'stock-desc':(a,b)=> Number(b.stock||0)-Number(a.stock||0),
+    }[ord];
+    if(by) arr.sort(by);
+
+    countEl.textContent = arr.length;
+    grid.innerHTML = arr.map(card).join('');
+
+    // attach actions
+    grid.querySelectorAll('[data-big]').forEach(btn=>{
+      btn.addEventListener('click', e=> abrirGrande(e.currentTarget.dataset.big));
+    });
+    grid.querySelectorAll('[data-fav]').forEach(btn=>{
+      btn.addEventListener('click', e=> toggleFav(e.currentTarget.dataset.fav));
+    });
+  }
+
+  function abrirGrande(src){
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:9999';
+    const img = document.createElement('img');
+    img.src = src;
+    img.style.maxWidth = '90vw';
+    img.style.maxHeight = '90vh';
+    img.style.borderRadius = '12px';
+    overlay.appendChild(img);
+    overlay.addEventListener('click', ()=> overlay.remove());
+    document.body.appendChild(overlay);
+  }
+
+  // eventos
+  [nombre,categoria,idioma,rareza,precio,soloStock,soloFav,ordenar].forEach(el=>{
+    el && el.addEventListener('input', ()=> {
+      if(el===precio) precioValor.textContent = precio.value;
+      render();
+    });
+  });
+  btnBuscar.addEventListener('click', e=>{ e.preventDefault(); render(); });
+  btnLimpiar.addEventListener('click', e=>{
+    e.preventDefault();
+    nombre.value=''; categoria.value=''; idioma.value=''; rareza.value='';
+    precio.value=150; precioValor.textContent='150'; soloStock.checked=false; soloFav.checked=false;
+    ordenar.value='name-asc'; render();
+  });
+
+  // cargar datos
+  fetch('data/productos.json')
+   .then(r=>r.json())
+   .then(data=>{
+      const tipo = page==='cajas' ? 'caja' : 'carta';
+      productos = data.filter(p=> p.tipo===tipo);
+      // poblar selects
+      const uniq = (arr)=> [...new Set(arr.filter(Boolean))];
+      uniq(productos.map(p=>p.categoria)).sort().forEach(v=>{
+        const o=document.createElement('option'); o.value=v; o.textContent=v; categoria.appendChild(o);
+      });
+      uniq(productos.map(p=>p.idioma)).sort().forEach(v=>{
+        const o=document.createElement('option'); o.value=v; o.textContent=v; idioma.appendChild(o);
+      });
+      if(page==='cartas'){
+        // Si no existe rareza en datos, ocultar el control
+        const tieneRareza = productos.some(p=>p.rareza);
+        if(!tieneRareza){ rareza.parentElement.style.display='none'; }
+      } else {
+        rareza.parentElement.style.display='none';
+      }
+      // rango de precio dinámico
+      const maxPrecio = Math.max(150, ...productos.map(p=>Number(p.precio)||0));
+      precio.max = Math.ceil(maxPrecio);
+      precio.value = Math.min(150, precio.max);
+      precioValor.textContent = precio.value;
+
+      render();
+   });
+})();

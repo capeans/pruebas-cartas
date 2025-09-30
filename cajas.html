@@ -19,36 +19,64 @@
 <a href="contacto.html">Contacto</a>
 <a href="tienda.html">Tienda</a></nav>
 </header>
-<main style="display: flex; gap: 2em;">
-<aside style="width: 250px;">
-<h3>Filtrar por:</h3>
-<label>Nombre:</label>
-<input id="filtro-nombre" placeholder="Nombre..." type="text"/>
-<label>Categoría:</label>
-<select id="filtro-categoria">
-<option value="">Todas</option>
-<option value="pokemon">Pokémon</option>
-<option value="one piece">One Piece</option>
-<option value="digimon">Digimon</option>
-<option value="dragon ball">Dragon Ball</option>
-<option value="naruto">Naruto</option>
-<option value="otros">Otros</option>
-</select>
-<label for="filtro-idioma">Idioma:</label>
-<select id="filtro-idioma">
-<option value="">Todos</option>
-<option value="Español">Español</option>
-<option value="Inglés">Inglés</option>
-<option value="Japonés">Japonés</option>
-</select>
-<label>Precio máx: <span id="precio-valor">1000</span> €</label>
-<input id="filtro-precio" max="1000" min="0" type="range" value="1000"/>
-</aside>
-<section style="flex: 1;">
-<h1>Cajas Coleccionables</h1>
-<div class="grid" id="productos-cajas"></div>
-</section>
+
+<main class="catalogo">
+  <aside class="filtros">
+    <label>Nombre
+      <input id="filtro-nombre" type="text" placeholder="Ej. Charizard, Luffy..." />
+    </label>
+
+    <label>Categoría
+      <select id="filtro-categoria">
+        <option value="">Todas</option>
+      </select>
+    </label>
+
+    <label>Idioma
+      <select id="filtro-idioma">
+        <option value="">Todos</option>
+      </select>
+    </label>
+
+    <label>Rareza
+      <select id="filtro-rareza">
+        <option value="">Todas</option>
+        <option value="R">R</option>
+        <option value="SR">SR</option>
+        <option value="UR">UR</option>
+        <option value="SSR">SSR</option>
+      </select>
+    </label>
+
+    <label>Precio ≤ <span id="precio-valor">150</span>€</label>
+    <input id="filtro-precio" type="range" min="0" max="1000" value="150" />
+
+    <label class="check"><input id="solo-stock" type="checkbox" /> Solo en stock</label>
+    <label class="check"><input id="solo-favoritos" type="checkbox" /> Favoritos</label>
+
+    <div class="acciones-filtros">
+      <button id="btn-limpiar" class="btn-secondary">Limpiar</button>
+      <button id="btn-buscar" class="btn-primary">Buscar</button>
+    </div>
+  </aside>
+
+  <section class="resultados">
+    <div class="cabecera-resultados">
+      <div><span id="count">0</span> resultados</div>
+      <label>Ordenar
+        <select id="ordenar">
+          <option value="name-asc">Nombre (A-Z)</option>
+          <option value="name-desc">Nombre (Z-A)</option>
+          <option value="price-asc">Precio (Menor→Mayor)</option>
+          <option value="price-desc">Precio (Mayor→Menor)</option>
+          <option value="stock-desc">Stock (Mayor→Menor)</option>
+        </select>
+      </label>
+    </div>
+    <div class="grid" id="grid-productos"></div>
+  </section>
 </main>
+
 <footer>
     © 2025 Uzutcg - Todos los derechos reservados
   </footer>
