@@ -1,0 +1,242 @@
+[
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 1",
+    "categoria": "Digimon",
+    "idioma": "Español",
+    "precio": 50,
+    "stock": 10,
+    "imagen": "img/cajas/digimon/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 2",
+    "categoria": "Digimon",
+    "idioma": "Español",
+    "precio": 55,
+    "stock": 10,
+    "imagen": "img/cajas/digimon/2.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 3",
+    "categoria": "One Piece",
+    "idioma": "Español",
+    "precio": 60,
+    "stock": 10,
+    "imagen": "img/cajas/one_piece/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 4",
+    "categoria": "One Piece",
+    "idioma": "Español",
+    "precio": 65,
+    "stock": 10,
+    "imagen": "img/cajas/one_piece/2.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 5",
+    "categoria": "Pokemon",
+    "idioma": "Inglés",
+    "precio": 70,
+    "stock": 10,
+    "imagen": "img/cajas/pokemon/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 6",
+    "categoria": "Pokemon",
+    "idioma": "Inglés",
+    "precio": 75,
+    "stock": 10,
+    "imagen": "img/cajas/pokemon/2.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 7",
+    "categoria": "Magic",
+    "idioma": "Inglés",
+    "precio": 80,
+    "stock": 10,
+    "imagen": "img/cajas/magic/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 8",
+    "categoria": "Magic",
+    "idioma": "Japonés",
+    "precio": 85,
+    "stock": 10,
+    "imagen": "img/cajas/magic/2.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 9",
+    "categoria": "Dragon Ball",
+    "idioma": "Japonés",
+    "precio": 90,
+    "stock": 10,
+    "imagen": "img/cajas/dragonball/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 10",
+    "categoria": "Dragon Ball",
+    "idioma": "Japonés",
+    "precio": 95,
+    "stock": 10,
+    "imagen": "img/cajas/dragonball/2.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 11",
+    "categoria": "Yugioh",
+    "idioma": "Japonés",
+    "precio": 100,
+    "stock": 10,
+    "imagen": "img/cajas/yugioh/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "caja",
+    "nombre": "Caja Stock 12",
+    "categoria": "Yugioh",
+    "idioma": "Español",
+    "precio": 105,
+    "stock": 10,
+    "imagen": "img/cajas/yugioh/2.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 1",
+    "categoria": "Digimon",
+    "idioma": "Español",
+    "precio": 5,
+    "stock": 8,
+    "imagen": "img/cartas/digimon/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 2",
+    "categoria": "Digimon",
+    "idioma": "Español",
+    "precio": 7,
+    "stock": 8,
+    "imagen": "img/cartas/digimon/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 3",
+    "categoria": "Digimon",
+    "idioma": "Español",
+    "precio": 9,
+    "stock": 8,
+    "imagen": "img/cartas/digimon/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 4",
+    "categoria": "Digimon",
+    "idioma": "Español",
+    "precio": 11,
+    "stock": 8,
+    "imagen": "img/cartas/digimon/2.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 5",
+    "categoria": "Digimon",
+    "idioma": "Español",
+    "precio": 13,
+    "stock": 8,
+    "imagen": "img/cartas/digimon/3.jpg",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 6",
+    "categoria": "One Piece",
+    "idioma": "Inglés",
+    "precio": 15,
+    "stock": 8,
+    "imagen": "img/cartas/onepiece/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 7",
+    "categoria": "One Piece",
+    "idioma": "Inglés",
+    "precio": 17,
+    "stock": 8,
+    "imagen": "img/cartas/onepiece/2.jpg",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 8",
+    "categoria": "One Piece",
+    "idioma": "Inglés",
+    "precio": 19,
+    "stock": 8,
+    "imagen": "img/cartas/onepiece/3.jpg",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 9",
+    "categoria": "Pokemon",
+    "idioma": "Japonés",
+    "precio": 21,
+    "stock": 8,
+    "imagen": "img/cartas/pokemon/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 10",
+    "categoria": "Pokemon",
+    "idioma": "Japonés",
+    "precio": 23,
+    "stock": 8,
+    "imagen": "img/cartas/pokemon/3.jpg",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 11",
+    "categoria": "Pokemon",
+    "idioma": "Japonés",
+    "precio": 25,
+    "stock": 8,
+    "imagen": "img/cartas/pokemon/5.jpg",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  },
+  {
+    "tipo": "carta",
+    "nombre": "Carta Stock 12",
+    "categoria": "Pokemon",
+    "idioma": "Japonés",
+    "precio": 27,
+    "stock": 8,
+    "imagen": "img/cartas/pokemon/1.png",
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+  }
+]

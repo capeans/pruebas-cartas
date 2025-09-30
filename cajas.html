@@ -1,37 +1,56 @@
-<!DOCTYPE html><html lang='es'><head><title>UzuTCG • Cajas</title><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><link rel='icon' href='assets/img/favicon.svg' type='image/svg+xml'><link rel='stylesheet' href='styles.css'><script defer src='bundle.js'></script></head><body><header class='header'><div class='container header-inner'><a class='brand' href='index.html'><img class='brand-logo' src='assets/img/logo.svg' alt='UzuTCG'><span class='brand-name'>UzuTCG</span></a><nav id='site-nav' class='nav'><a href='cartas.html'>Cartas</a><a href='cajas.html'>Cajas</a><a href='categoria.html?cat=Pok%C3%A9mon'>Categorías</a><a href='conecta.html'>Conecta</a></nav><a class='btn cart-icon' href='cart.html' aria-label='Carrito'>🛒<span id='cart-count' class='cart-count' style='display:none'>0</span></a></div></header>
-<section class='section'><div class='container'>
-<header class='section-head'><h2>Cajas</h2><p>Filtra por categoría, idioma, precio y modo. Pulsa <strong>Buscar</strong>.</p></header>
-<div class='market'>
-  <aside class='filters'>
-    <div class='row'><label>Nombre<input id='f-name' placeholder='Ej. Box Pikachu, Box Luffy...'></label></div>
-    <div class='row'><label>Categoría<select id='f-cat'><option value=''>Todas</option><option>Pokémon</option><option>One Piece</option><option>Digimon</option><option>Dragon Ball</option><option>Naruto</option><option>Magic</option></select></label></div>
-    <div class='row'><label>Idioma<select id='f-lang'><option value=''>Todos</option><option>ES</option><option>EN</option><option>JP</option><option>PT</option><option>IT</option></select></label></div>
-    <div class='row'><div>Modo</div><div class='toggle'><input type='radio' id='m-sellada' name='modo' value='sellada' checked><label for='m-sellada'>Sellada</label><input type='radio' id='m-directo' name='modo' value='directo'><label for='m-directo'>Abrir en directo</label></div></div>
-    <div class='row'><div>Precio ≤ <strong id='price-val'>300</strong>€</div><input type='range' id='f-price' min='0' max='1000' step='10' value='300'></div>
-    <div class='row'><label><input type='checkbox' id='f-instock' checked> Solo en stock</label></div>
-    <div class='actions'><button class='btn' id='clear'>Limpiar</button><button class='btn btn-primary' id='search'>Buscar</button></div>
-  </aside>
-  <div class='results'>
-    <div class='toolbar'><div class='count' id='count'>0 resultados</div><div class='sort'><label>Ordenar<select id='sort'><option value='name-asc'>Nombre (A-Z)</option><option value='price-asc'>Precio (↑)</option><option value='price-desc'>Precio (↓)</option></select></label></div></div>
-    <div id='grid' class='grid'></div><div id='empty' class='empty' style='display:none'>No hay resultados con estos filtros.</div><div id='pager' class='pager'></div>
-  </div>
-</div></div></section>
-<script>
-(async ()=>{
-  UZU.navActive('cajas.html');
-  const data = await UZU.fetchJSON('data/products.json'); const ALL = data.boxes;
-  const grid=document.getElementById('grid'), count=document.getElementById('count'), empty=document.getElementById('empty'), pager=document.getElementById('pager');
-  const fName=document.getElementById('f-name'), fCat=document.getElementById('f-cat'), fLang=document.getElementById('f-lang'), fPrice=document.getElementById('f-price'), priceVal=document.getElementById('price-val'), fStock=document.getElementById('f-instock');
-  const clearBtn=document.getElementById('clear'), searchBtn=document.getElementById('search'), sortSel=document.getElementById('sort'); let mode='sellada'; document.querySelectorAll('input[name=modo]').forEach(r=>r.addEventListener('change', e=>{ mode=e.target.value; }));
-  let list=ALL.slice(); let page=1, per=12;
-  function doFilter(){ list = UZU.applyFilters(ALL, {name:fName.value, cat:fCat.value, lang:fLang.value, rare:'', max:+fPrice.value, inStock:fStock.checked}); switch (sortSel.value){ case 'name-asc': list.sort((a,b)=>a.name.localeCompare(b.name)); break; case 'price-asc': list.sort((a,b)=>a.price-b.price); break; case 'price-desc': list.sort((a,b)=>b.price-a.price); break; } page=1; render(); }
-  function cardHTML(p){ const price = p.price * (mode==='sellada'?1:1.05); return UZU.cardHTML({...p, price}, 'box'); }
-  function render(){ const pg = UZU.paginate(list, page, per); grid.innerHTML = pg.items.map(cardHTML).join(''); grid.querySelectorAll('[data-add]').forEach(btn=>btn.addEventListener('click', e => { const card = e.target.closest('.card'); const id=+card.dataset.id; const prod = pg.items.find(x=>x.id===id); UZU.addToCart({id:prod.id, name:prod.name, price:prod.price*(mode==='sellada'?1:1.05), img:prod.img.replace('.webp','.svg'), type:'box', qty:1}); })); count.textContent = pg.total+' resultados'; empty.style.display = pg.total ? 'none' : 'block'; UZU.renderPager(pager, pg, (p)=>{ page=p; render(); }); }
-  clearBtn.addEventListener('click', ()=>{ fName.value=''; fCat.value=''; fLang.value=''; fPrice.value=300; priceVal.textContent='300'; fStock.checked=true; sortSel.value='name-asc'; document.getElementById('m-sellada').checked=true; mode='sellada'; doFilter(); });
-  searchBtn.addEventListener('click', doFilter);
-  priceVal.textContent=fPrice.value; fPrice.addEventListener('input', ()=> priceVal.textContent=fPrice.value);
-  sortSel.addEventListener('change', doFilter);
-  doFilter();
-})();
-</script>
-<footer class='footer'><div class='container footer-grid'><div><a class='brand' href='index.html'><img class='brand-logo' src='assets/img/logo.svg' alt='UzuTCG'><span class='brand-name'>UzuTCG</span></a><p>© <span id='year'></span> UzuTCG</p></div><nav><a href='#' onclick='alert("Aviso legal (demo)");return false;'>Aviso legal</a> · <a href='#' onclick='alert("Privacidad (demo)");return false;'>Privacidad</a></nav></div></footer><script>document.getElementById('year').textContent=new Date().getFullYear();</script></body></html>
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<title>Cajas - Uzutcg</title>
+<link href="img/logo.png" rel="icon" type="image/png"/>
+<link href="css/styles.css" rel="stylesheet"/>
+<script defer="" src="js/script.js"></script>
+</head>
+<body class="body-footer-fijo" data-page="cajas">
+<header>
+<img alt="Uzutcg Logo" src="img/logo.png" style="height:40px;"/>
+<nav>
+<a href="index.html">Inicio</a>
+<a href="cajas.html">Cajas</a>
+<a href="cartas.html">Cartas</a>
+<a href="nosotros.html">Nosotros</a>
+<a href="contacto.html">Contacto</a>
+<a href="tienda.html">Tienda</a></nav>
+</header>
+<main style="display: flex; gap: 2em;">
+<aside style="width: 250px;">
+<h3>Filtrar por:</h3>
+<label>Nombre:</label>
+<input id="filtro-nombre" placeholder="Nombre..." type="text"/>
+<label>Categoría:</label>
+<select id="filtro-categoria">
+<option value="">Todas</option>
+<option value="pokemon">Pokémon</option>
+<option value="one piece">One Piece</option>
+<option value="digimon">Digimon</option>
+<option value="dragon ball">Dragon Ball</option>
+<option value="naruto">Naruto</option>
+<option value="otros">Otros</option>
+</select>
+<label for="filtro-idioma">Idioma:</label>
+<select id="filtro-idioma">
+<option value="">Todos</option>
+<option value="Español">Español</option>
+<option value="Inglés">Inglés</option>
+<option value="Japonés">Japonés</option>
+</select>
+<label>Precio máx: <span id="precio-valor">1000</span> €</label>
+<input id="filtro-precio" max="1000" min="0" type="range" value="1000"/>
+</aside>
+<section style="flex: 1;">
+<h1>Cajas Coleccionables</h1>
+<div class="grid" id="productos-cajas"></div>
+</section>
+</main>
+<footer>
+    © 2025 Uzutcg - Todos los derechos reservados
+  </footer>
+</body>
+</html>

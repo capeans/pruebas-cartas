@@ -1,89 +1,299 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <title>UzuTCG • Inicio</title>
-  <meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link rel='icon' href='assets/img/favicon.svg' type='image/svg+xml'>
-  <link rel='stylesheet' href='styles.css'>
-  <script defer src='bundle.js'></script>
+<meta charset="utf-8"/>
+<link href="img/logo.png" rel="icon" type="image/png"/>
+<title>UZUTCG - Cartas Coleccionables</title>
+<link href="css/styles.css" rel="stylesheet"/>
 </head>
-<body>
-<header class='header'><div class='container header-inner'>
-  <a class='brand' href='index.html'><img class='brand-logo' src='assets/img/logo.svg' alt='UzuTCG'><span class='brand-name'>UzuTCG</span></a>
-  <nav id='site-nav' class='nav'>
-    <a href='cartas.html'>Cartas</a>
-    <a href='cajas.html'>Cajas</a>
-    <a href='categoria.html?cat=Pok%C3%A9mon'>Categorías</a>
-    <a href='conecta.html'>Conecta</a>
-  </nav>
-  <a class='btn cart-icon' href='cart.html' aria-label='Carrito'>🛒<span id='cart-count' class='cart-count' style='display:none'>0</span></a>
-</div></header>
-
-<section class='hero-old'>
-  <div class='container hero-grid'>
-    <div>
-      <h1>La casa de las cartas y cajas</h1>
-      <p>Catálogo curado, aperturas en directo y comunidad. Busca, filtra y compra con confianza.</p>
-      <div><a class='btn btn-primary' href='cartas.html'>Filtrar cartas</a> <a class='btn' href='cajas.html'>Filtrar cajas</a></div>
-    </div>
-    <div class='hero-art'><img src='assets/img/hero.svg' alt='Hero UzuTCG'></div>
-  </div>
+<body class="body-footer-fijo">
+<header>
+<img alt="Uzutcg Logo" src="img/logo.png" style="height:40px;"/>
+<nav>
+<a href="index.html">Inicio</a>
+<a href="cajas.html">Cajas</a>
+<a href="cartas.html">Cartas</a>
+<a href="nosotros.html">Nosotros</a>
+<a href="contacto.html">Contacto</a>
+<a href="tienda.html">Tienda</a></nav>
+</header>
+<!-- SECCIÓN HERO -->
+<section class="home-hero hero">
+<div class="container hero-grid">
+<div class="hero-copy">
+<h1>UzuTCG — <span class="accent">Cartas &amp; Cajas</span></h1>
+<p>Explora nuestro catálogo con filtros avanzados, favoritos y aperturas en directo.</p>
+<form action="categoria.html" class="searchbar" method="get">
+<input name="q" placeholder="Buscar por nombre o serie…" type="text"/>
+<button class="btn btn-primary" type="submit">Buscar</button>
+</form>
+<div class="chip-list">
+<a class="chip" href="categoria.html?cat=Pokemon">Pokémon</a>
+<a class="chip" href="categoria.html?cat=One%20Piece">One Piece</a>
+<a class="chip" href="categoria.html?cat=Digimon">Digimon</a>
+<a class="chip" href="categoria.html?cat=Dragon%20Ball">Dragon Ball</a>
+<a class="chip" href="categoria.html?cat=Naruto">Naruto</a>
+<a class="chip" href="categoria.html?cat=Magic">Magic</a>
+</div>
+<div class="hero-cta">
+<a class="btn btn-primary" href="cartas.html">Ver Cartas</a>
+<a class="btn btn-ghost" href="cajas.html">Ver Cajas</a>
+</div>
+<ul class="trust">
+<li>🚚 Envío 24/48h</li>
+<li>🔒 Pago seguro</li>
+<li>🎥 Aperturas en directo</li>
+</ul>
+</div>
+<div class="hero-visual">
+<div class="logo-hero-wrap">
+<img alt="UzuTCG" class="logo-hero img-contain" loading="eager" src="assets/img/user_001.png"/>
+</div>
+</div>
+</div>
 </section>
-
-<section class='section'>
-  <div class='container'>
-    <header class='section-head'><h2>Categorías</h2><p>Elige una y verás cartas y cajas de esa saga.</p></header>
-    <div class='cat-rail' id='cat-rail'></div>
-  </div>
-</section>
-
-<section class='section alt'>
-  <div class='container'>
-    <header class='section-head'><h2>Novedades de la semana</h2><p>Lo último en llegar</p></header>
-    <div class='mosaic' id='week-tiles'></div>
-  </div>
-</section>
-
-<section class='section'>
-  <div class='container'>
-    <header class='section-head'><h2>Más vendido</h2><p>Top ventas</p></header>
-    <div class='mosaic' id='best-tiles'></div>
-  </div>
-</section>
-
-<footer class='footer'><div class='container footer-grid'>
-  <div><a class='brand' href='index.html'><img class='brand-logo' src='assets/img/logo.svg' alt='UzuTCG'><span class='brand-name'>UzuTCG</span></a>
-  <p>© <span id='year'></span> UzuTCG</p></div>
-  <nav><a href='#' onclick='alert("Aviso legal (demo)");return false;'>Aviso legal</a> · <a href='#' onclick='alert("Privacidad (demo)");return false;'>Privacidad</a></nav>
-</div></footer>
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-(async ()=>{
-  const data = await UZU.fetchJSON('data/products.json');
-
-  // Categorías (arriba)
-  document.getElementById('cat-rail').innerHTML = data.categories.map(c =>
-    "<a class='cat-tile' href='categoria.html?cat="+encodeURIComponent(c.slug)+"'>"
-    +"<img src='"+c.img.replace(".webp",".svg")+"' alt='"+c.slug+"'><div class='label'>"+c.slug+"</div></a>"
-  ).join('');
-
-  // Novedades de la semana (8 mosaicos de imagen)
-  const news = data.cards.slice(0,4).concat(data.boxes.slice(0,4));
-  document.getElementById('week-tiles').innerHTML = news.map((p,i) =>
-    "<div class='tile'><img src='"+p.img.replace(".webp",".svg")+"' alt='Nuevo "+(i+1)+"'><div class='caption'>"
-    + (p.rarity==='BOX'?'Caja':'Carta') + " · "+p.price.toFixed(2)+" €</div></div>"
-  ).join('');
-
-  // Más vendido (8 mosaicos)
-  const best = data.cards.slice().reverse().slice(0,4).concat(data.boxes.slice().reverse().slice(0,4));
-  document.getElementById('best-tiles').innerHTML = best.map((p,i) =>
-    "<div class='tile'><img src='"+p.img.replace(".webp",".svg")+"' alt='Top "+(i+1)+"'><div class='caption'>"
-    + (p.rarity==='BOX'?'Caja':'Carta') + " · "+p.price.toFixed(2)+" €</div></div>"
-  ).join('');
-
-  UZU.navActive('index.html');
-  UZU.updateCartCount();
-})();
-</script>
+<!-- CATEGORÍAS CON IMAGEN -->
+<main>
+<h2 style="text-align: center; margin-top: 2em;">Categorías Populares</h2>
+<div class="carousel-container"><button class="carousel-btn left">❮</button><div class="carousel-track"><div class="category-img" onclick="window.location.href='todo.html?categoria=pokemon'">
+<img alt="Pokémon" src="img/fondos/pokemon.png"/>
+<span>Pokémon</span>
+</div><div class="category-img" onclick="window.location.href='todo.html?categoria=one-piece'">
+<img alt="One Piece" src="img/fondos/onePiece.png"/>
+<span>One Piece</span>
+</div><div class="category-img" onclick="window.location.href='todo.html?categoria=yugioh'">
+<img alt="Yu-Gi-Oh" src="img/fondos/yugioh.png"/>
+<span>Yu-Gi-Oh</span>
+</div><div class="category-img" onclick="window.location.href='todo.html?categoria=digimon'">
+<img alt="Digimon" src="img/fondos/digimon.png"/>
+<span>Digimon</span>
+</div><div class="category-img" onclick="window.location.href='todo.html?categoria=dragon-ball'">
+<img alt="Dragon Ball" src="img/fondos/dragonBall.png"/>
+<span>Dragon Ball</span>
+</div><div class="category-img" onclick="window.location.href='todo.html?categoria=otros'">
+<img alt="Otros" src="img/fondos/otros.png"/>
+<span>Otros</span>
+</div><div class="category-img" onclick="window.location.href='todo.html?categoria=pokémon-7'">
+<img alt="Pokémon" src="img/fondos/pokemon.png"/>
+<span>Pokémon 7</span>
+</div><div class="category-img" onclick="window.location.href='todo.html?categoria=pokémon-8'">
+<img alt="Pokémon" src="img/fondos/pokemon.png"/>
+<span>Pokémon 8</span>
+</div><div class="category-img" onclick="window.location.href='todo.html?categoria=pokémon-9'">
+<img alt="Pokémon" src="img/fondos/pokemon.png"/>
+<span>Pokémon 9</span>
+</div><div class="category-img" onclick="window.location.href='todo.html?categoria=pokémon-10'">
+<img alt="Pokémon" src="img/fondos/pokemon.png"/>
+<span>Pokémon 10</span>
+</div></div><button class="carousel-btn right">❯</button></div>
+<h2 style="text-align: center; margin-top: 3em;">Más Populares</h2><div class="carousel-container"><button class="carousel-btn left">❮</button><div class="carousel-track"><div class="producto">
+<img alt="Ejemplo Caja 1" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 2" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 2</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 3" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 3</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 4" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 4</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 5" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 5</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 6" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 6</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 7" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 7</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 8" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 8</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 9" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 9</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 10" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 10</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div></div><button class="carousel-btn right">❯</button></div><h2 style="text-align: center; margin-top: 3em;">Novedades</h2><div class="carousel-container"><button class="carousel-btn left">❮</button><div class="carousel-track"><div class="producto">
+<img alt="Ejemplo Caja 1" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 2" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 2</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 3" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 3</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 4" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 4</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 5" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 5</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 6" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 6</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 7" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 7</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 8" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 8</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 9" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 9</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Caja Digimon 10" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 10</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Ejemplo Caja 1" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 2</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Ejemplo Caja 1" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 3</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Ejemplo Caja 1" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 4</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Ejemplo Caja 1" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 5</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Ejemplo Caja 1" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 6</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Ejemplo Caja 1" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 7</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Ejemplo Caja 1" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 8</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Ejemplo Caja 1" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 9</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div><div class="producto">
+<img alt="Ejemplo Caja 1" src="img/cajas/digimon/1.png"/>
+<div class="producto-texto">
+<h3>Caja Digimon 10</h3>
+<p><strong>Idioma:</strong> Español</p>
+<p><strong>Precio:</strong> 29,99 €</p>
+</div>
+</div></div><button class="carousel-btn right">❯</button></div></main>
+<footer>
+    © 2025 Uzutcg - Todos los derechos reservados
+  </footer>
+<script defer="" src="js/script.js"></script>
 </body>
 </html>
