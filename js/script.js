@@ -252,17 +252,23 @@ function abrirImagenGrande(src) {
   }
 
   function abrirGrande(src){
-    const overlay = document.createElement('div');
-    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:9999';
-    const img = document.createElement('img');
-    img.src = src;
-    img.style.maxWidth = '90vw';
-    img.style.maxHeight = '90vh';
-    img.style.borderRadius = '12px';
-    overlay.appendChild(img);
-    overlay.addEventListener('click', ()=> overlay.remove());
-    document.body.appendChild(overlay);
-  }
+  const overlay = document.createElement('div');
+  overlay.className = 'overlay-modal';
+  const frame = document.createElement('div');
+  frame.className = 'modal-frame';
+  const img = document.createElement('img');
+  img.className = 'modal-img';
+  img.src = src;
+  const close = document.createElement('button');
+  close.className = 'modal-close';
+  close.textContent = '×';
+  close.addEventListener('click', ()=> overlay.remove());
+  overlay.addEventListener('click', (e)=>{ if(e.target===overlay) overlay.remove(); });
+  frame.appendChild(img);
+  overlay.appendChild(frame);
+  overlay.appendChild(close);
+  document.body.appendChild(overlay);
+}
 
   // eventos
   [precio].forEach(el=>{

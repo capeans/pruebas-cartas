@@ -821,3 +821,15 @@ img[loading="lazy"] {
 
 .switches-title{font-weight:800;opacity:.8;margin-bottom:6px}
 .switches-help{font-size:.85rem;color:#555;margin:0}
+
+
+/* Chips header for favorites */
+.cabecera-chips{display:flex;gap:8px;align-items:center}
+.chip-btn{border:1px solid #e6e6e9;background:#fff;border-radius:999px;padding:6px 12px;font-weight:700;cursor:pointer}
+.chip-active{background:#6b5cff;color:#fff;border-color:#6b5cff}
+
+/* Uniform modal image sizing */
+.overlay-modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:9999}
+.modal-frame{width:min(90vw,1100px);height:min(85vh,740px);background:#0b1221;border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.modal-img{max-width:100%;max-height:100%;object-fit:contain}
+.modal-close{position:absolute;top:16px;right:16px;background:#fff;border:0;border-radius:999px;width:36px;height:36px;font-weight:900;cursor:pointer}
