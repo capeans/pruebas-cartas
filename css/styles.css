@@ -817,3 +817,7 @@ img[loading="lazy"] {
 .fav-badge{position:absolute;right:10px;top:10px;background:rgba(255,215,0,.95);color:#111;padding:6px 10px;border-radius:999px;font-weight:800;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .btn-heart .heart{opacity:.5;transition:.15s}
 .btn-heart.active .heart{opacity:1}
+
+
+.switches-title{font-weight:800;opacity:.8;margin-bottom:6px}
+.switches-help{font-size:.85rem;color:#555;margin:0}
