@@ -127,7 +127,8 @@
     "precio": 5,
     "stock": 8,
     "imagen": "img/cartas/digimon/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "R"
   },
   {
     "tipo": "carta",
@@ -137,7 +138,8 @@
     "precio": 7,
     "stock": 8,
     "imagen": "img/cartas/digimon/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "SR"
   },
   {
     "tipo": "carta",
@@ -147,7 +149,8 @@
     "precio": 9,
     "stock": 8,
     "imagen": "img/cartas/digimon/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "R"
   },
   {
     "tipo": "carta",
@@ -157,7 +160,8 @@
     "precio": 11,
     "stock": 8,
     "imagen": "img/cartas/digimon/2.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "SR"
   },
   {
     "tipo": "carta",
@@ -167,7 +171,8 @@
     "precio": 13,
     "stock": 8,
     "imagen": "img/cartas/digimon/3.jpg",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "SSR"
   },
   {
     "tipo": "carta",
@@ -177,7 +182,8 @@
     "precio": 15,
     "stock": 8,
     "imagen": "img/cartas/onepiece/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "SSR"
   },
   {
     "tipo": "carta",
@@ -187,7 +193,8 @@
     "precio": 17,
     "stock": 8,
     "imagen": "img/cartas/onepiece/2.jpg",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "UR"
   },
   {
     "tipo": "carta",
@@ -197,7 +204,8 @@
     "precio": 19,
     "stock": 8,
     "imagen": "img/cartas/onepiece/3.jpg",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "R"
   },
   {
     "tipo": "carta",
@@ -207,7 +215,8 @@
     "precio": 21,
     "stock": 8,
     "imagen": "img/cartas/pokemon/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "R"
   },
   {
     "tipo": "carta",
@@ -217,7 +226,8 @@
     "precio": 23,
     "stock": 8,
     "imagen": "img/cartas/pokemon/3.jpg",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "SR"
   },
   {
     "tipo": "carta",
@@ -227,7 +237,8 @@
     "precio": 25,
     "stock": 8,
     "imagen": "img/cartas/pokemon/5.jpg",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "SSR"
   },
   {
     "tipo": "carta",
@@ -237,6 +248,7 @@
     "precio": 27,
     "stock": 8,
     "imagen": "img/cartas/pokemon/1.png",
-    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas."
+    "descripcion": "Caja clásica de la colección base de Pokémon. Contiene 36 sobres de cartas.",
+    "rareza": "R"
   }
 ]
