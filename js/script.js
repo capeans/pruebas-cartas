@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         esCartas ? 'productos-cartas' :
         'productos-todo'
       );
-      if(!contenedor){ return; } // no legacy container on this page; use sidebar module
+      if(!contenedor){ return; }
 
       const filtroNombre = document.getElementById('filtro-nombre');
       const filtroCategoria = document.getElementById('filtro-categoria');
@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const idioma = filtroIdioma?.value.toLowerCase() || "";
         const max = parseFloat(filtroPrecio?.value) || 1000;
 
-        if (q) filtrados = filtrados.filter(p => p.nombre.toLowerCase().includes(q));
-        if (cat) filtrados = filtrados.filter(p => p.categoria.toLowerCase().includes(cat));
+        if (q) filtrados = filtrados.filter(p => p.nombre.toLowerCase().includes(q) || slugify(p.categoria).includes(slugify(q)));
+        if (cat) filtrados = filtrados.filter(p => slugify(p.categoria) === cat);
         if (idioma) filtrados = filtrados.filter(p => (p.idioma || "").toLowerCase().includes(idioma));
         filtrados = filtrados.filter(p => parseFloat(p.precio) <= max);
 
@@ -143,7 +143,15 @@ function abrirImagenGrande(src) {
 
 // ===== Catálogo con sidebar (cartas y cajas) =====
 (function(){
-  const page = document.body.getAttribute('data-page') || '';
+  
+  function slugify(s){
+    return (s||'').toString().toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+      .replace(/[^a-z0-9\s-]/g,'')
+      .trim()
+      .replace(/[\s_]+/g,'-');
+  }
+const page = document.body.getAttribute('data-page') || '';
   if (!['cartas','cajas','todo'].includes(page)) return;
 
   const $ = sel => document.querySelector(sel);
@@ -161,7 +169,14 @@ function abrirImagenGrande(src) {
   const btnLimpiar = $('#btn-limpiar');
   const btnBuscar = $('#btn-buscar');
   const btnFav = document.querySelector('#btn-favoritos');
-  const btnStock = document.querySelector('#btn-stock');
+  
+  // URL params -> set initial controls
+  const params = new URLSearchParams(window.location.search);
+  const categoriaInicial = (params.get('categoria') || '').toLowerCase();
+  const qInicial = params.get('q') || params.get('query') || params.get('nombre');
+  if (qInicial && nombre) nombre.value = qInicial;
+  if (categoriaInicial && categoria) categoria.value = categoriaInicial; // select uses slug values
+const btnStock = document.querySelector('#btn-stock');
 
   let productos = [];
   let favoritos = JSON.parse(localStorage.getItem('fav_uzutcg')||'[]');
