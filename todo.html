@@ -5,29 +5,7 @@
 <meta charset="utf-8"/>
 <title>Todo - Uzutcg</title>
 <link href="css/styles.css" rel="stylesheet"/>
-<script defer="" src="js/script.js">
-document.addEventListener("DOMContentLoaded", () => {
-  const botones = document.querySelectorAll('#botones-categorias button');
-  const select = document.getElementById('filtro-categoria');
-
-  function resaltarBotonActivo(valor) {
-    botones.forEach(btn => {
-      const cat = btn.textContent.toLowerCase().replace(/ /g, '-');
-      btn.style.background = (cat === valor) ? '#f0b400' : '#111';
-    });
-  }
-
-  const params = new URLSearchParams(window.location.search);
-  const categoriaURL = params.get('categoria');
-  if (categoriaURL) {
-    resaltarBotonActivo(categoriaURL);
-  }
-
-  select?.addEventListener('change', () => {
-    resaltarBotonActivo(select.value.replace(/ /g, '-'));
-  });
-});
-</script>
+<script defer="" src="js/script.js"></script>
 </head>
 <body class="body-footer-fijo" data-page="todo">
 <header>
@@ -40,36 +18,65 @@ document.addEventListener("DOMContentLoaded", () => {
 <a href="contacto.html">Contacto</a>
 <a href="tienda.html">Tienda</a></nav>
 </header>
-<main style="display: flex; gap: 2em;">
-<aside>
-<h3>Filtrar por:</h3>
-<label>Nombre:</label>
-<input id="filtro-nombre" placeholder="Nombre..." type="text"/>
-<label>Categoría:</label>
-<select id="filtro-categoria">
-<option value="">Todas</option>
-<option value="pokemon">Pokémon</option>
-<option value="one piece">One Piece</option>
-<option value="digimon">Digimon</option>
-<option value="dragon ball">Dragon Ball</option>
-<option value="naruto">Naruto</option>
-<option value="yugioh">Yu-Gi-Oh</option>
-<option value="otros">Otros</option>
-</select>
-<label>Idioma:</label>
-<select id="filtro-idioma">
-<option value="">Todos</option>
-<option value="español">Español</option>
-<option value="inglés">Inglés</option>
-<option value="japonés">Japonés</option>
-</select>
-<label>Precio máx: <span id="precio-valor">1000</span> €</label>
-<input id="filtro-precio" max="1000" min="0" type="range" value="1000"/>
-</aside>
-<section style="flex: 1;">
-<h1>Todo - Cartas y Cajas</h1>
-<div class="grid" id="productos-todo"></div>
-</section>
+<main class="layout-catalogo">
+  <aside class="filtros">
+    <label>Nombre
+      <input id="filtro-nombre" type="text" placeholder="Ej. Charizard, Luffy..." />
+    </label>
+
+    <label>Categoría
+      <select id="filtro-categoria">
+        <option value="">Todas</option>
+      </select>
+    </label>
+
+    <label>Idioma
+      <select id="filtro-idioma">
+        <option value="">Todos</option>
+      </select>
+    </label>
+
+    <label>Rareza
+      <select id="filtro-rareza">
+        <option value="">Todas</option>
+        <option value="R">R</option>
+        <option value="SR">SR</option>
+        <option value="UR">UR</option>
+        <option value="SSR">SSR</option>
+        <option value="SP">SP</option>
+      </select>
+    </label>
+
+    <label>Precio ≤ <span id="precio-valor">150</span>€</label>
+    <input id="filtro-precio" type="range" min="0" max="1000" value="150" />
+
+    <div class="toggles">
+      <button id="btn-favoritos" class="btn-toggle" aria-pressed="false">Ver favoritos</button>
+      <button id="btn-stock" class="btn-toggle" data-mode="con">Ver con stock</button>
+      <!-- Hidden checkboxes kept for compatibility -->
+      <input id="solo-stock" type="checkbox" style="display:none" />
+      <input id="solo-favoritos" type="checkbox" style="display:none" />
+    </div>
+
+    <div class="acciones-filtros">
+      <button id="btn-limpiar" class="btn-secondary">Limpiar</button>
+    </div>
+  </aside>
+
+  <section class="resultados">
+    <div class="cabecera-resultados">
+      <div><span id="count">0</span> resultados</div>
+      <label>Ordenar
+        <select id="ordenar">
+          <option value="name-asc">Nombre (A–Z)</option>
+          <option value="name-desc">Nombre (Z–A)</option>
+          <option value="price-asc">Precio (↑)</option>
+          <option value="price-desc">Precio (↓)</option>
+        </select>
+      </label>
+    </div>
+    <div id="grid-productos" class="grid"></div>
+  </section>
 </main>
 <footer>
     © 2025 Uzutcg - Todos los derechos reservados

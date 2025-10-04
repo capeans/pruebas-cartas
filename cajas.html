@@ -53,26 +53,20 @@
 
     
     
-    <div class="switches">
-      <div class="switches-title">Mostrar</div>
-      <label class="switch">
-        <input id="solo-stock" type="checkbox" />
-        <span class="slider"></span>
-        <span class="switch-text">🟢 Solo en stock</span>
-      </label>
-      <label class="switch">
-        <input id="solo-favoritos" type="checkbox" />
-        <span class="slider"></span>
-        <span class="switch-text">⭐ Favoritos</span>
-      </label>
-      <p class="switches-help">Activa estas opciones y pulsa <strong>Buscar</strong> para aplicar.</p>
+    
+    <div class="toggles">
+      <button id="btn-favoritos" class="btn-toggle" aria-pressed="false">Ver favoritos</button>
+      <button id="btn-stock" class="btn-toggle" data-mode="con">Ver con stock</button>
+      <!-- Hidden checkboxes kept for compatibility -->
+      <input id="solo-stock" type="checkbox" style="display:none" />
+      <input id="solo-favoritos" type="checkbox" style="display:none" />
     </div>
-        
-        
-
+    
     <div class="acciones-filtros">
       <button id="btn-limpiar" class="btn-secondary">Limpiar</button>
-      <button id="btn-buscar" class="btn-primary">Buscar</button>
+    
+      <button id="btn-limpiar" class="btn-secondary">Limpiar</button>
+      
     </div>
   </aside>
 

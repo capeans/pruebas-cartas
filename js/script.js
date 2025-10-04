@@ -142,7 +142,7 @@ function abrirImagenGrande(src) {
 // ===== Catálogo con sidebar (cartas y cajas) =====
 (function(){
   const page = document.body.getAttribute('data-page') || '';
-  if (!['cartas','cajas'].includes(page)) return;
+  if (!['cartas','cajas','todo'].includes(page)) return;
 
   const $ = sel => document.querySelector(sel);
   const grid = $('#grid-productos');
@@ -158,6 +158,8 @@ function abrirImagenGrande(src) {
   const soloFav = $('#solo-favoritos');
   const btnLimpiar = $('#btn-limpiar');
   const btnBuscar = $('#btn-buscar');
+  const btnFav = document.querySelector('#btn-favoritos');
+  const btnStock = document.querySelector('#btn-stock');
 
   let productos = [];
   let favoritos = JSON.parse(localStorage.getItem('fav_uzutcg')||'[]');
@@ -275,7 +277,7 @@ function abrirImagenGrande(src) {
   // Enter en el campo de nombre = Buscar
   nombre && nombre.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); render(); }});
   // Click Buscar aplica filtros
-  btnBuscar.addEventListener('click', e=>{ e.preventDefault(); render(); });
+  if(btnBuscar){ btnBuscar.addEventListener('click', e=>{ e.preventDefault(); render(); }); }
   btnLimpiar.addEventListener('click', e=>{
     e.preventDefault();
     nombre.value=''; categoria.value=''; idioma.value=''; rareza.value='';
@@ -283,12 +285,42 @@ function abrirImagenGrande(src) {
     ordenar.value='name-asc'; render();
   });
 
+  
+  // Toggle buttons -> control hidden checkboxes + render
+  if (btnFav) {
+    btnFav.addEventListener('click', (e)=>{
+      const active = !(soloFav?.checked);
+      if (soloFav) soloFav.checked = active;
+      btnFav.setAttribute('aria-pressed', String(active));
+      btnFav.textContent = active ? 'Ocultar favoritos' : 'Ver favoritos';
+      render();
+    });
+  }
+  if (btnStock) {
+    btnStock.addEventListener('click', ()=>{
+      // Toggle between 'con' and 'sin'
+      const mode = btnStock.getAttribute('data-mode') === 'con' ? 'sin' : 'con';
+      btnStock.setAttribute('data-mode', mode);
+      btnStock.textContent = mode === 'con' ? 'Ver con stock' : 'Ver sin stock';
+      if (soloStock) soloStock.checked = (mode === 'con'); // when 'con' => show only in-stock
+      render();
+    });
+  }
+
+  // Auto render on field changes (no Buscar button needed)
+  [nombre, categoria, idioma, rareza, precio, soloStock, soloFav].forEach(el=>{
+    el && el.addEventListener('input', ()=> {
+      if (el===precio) { const pv=document.querySelector('#precio-valor'); if (pv) pv.textContent = precio.value; }
+      render();
+    });
+  });
+
   // cargar datos
   fetch('data/productos.json')
    .then(r=>r.json())
    .then(data=>{
-      const tipo = page==='cajas' ? 'caja' : 'carta';
-      productos = data.filter(p=> p.tipo===tipo);
+      const tipo = page==='cajas' ? 'caja' : (page==='cartas' ? 'carta' : null);
+      productos = tipo ? data.filter(p=> p.tipo===tipo) : data.slice();
       // poblar selects
       const uniq = (arr)=> [...new Set(arr.filter(Boolean))];
       uniq(productos.map(p=>p.categoria)).sort().forEach(v=>{
