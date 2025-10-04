@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         esCartas ? 'productos-cartas' :
         'productos-todo'
       );
+      if(!contenedor){ return; } // no legacy container on this page; use sidebar module
 
       const filtroNombre = document.getElementById('filtro-nombre');
       const filtroCategoria = document.getElementById('filtro-categoria');
