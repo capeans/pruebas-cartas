@@ -31,7 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const params = new URLSearchParams(window.location.search);
       const categoriaInicial = params.get('categoria')?.toLowerCase();
-
+      const qInicial = params.get('q') || params.get('query') || params.get('nombre');
+      if (qInicial && filtroNombre) { filtroNombre.value = qInicial; }
       let productosMostrados = [...productosOriginales];
       if (categoriaInicial) {
         productosMostrados = productosOriginales.filter(p =>
