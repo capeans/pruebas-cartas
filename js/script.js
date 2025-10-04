@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         render(filtrados);
       };
 
-      render(productosMostrados);
+      aplicarFiltros();
 
       filtroNombre?.addEventListener('input', aplicarFiltros);
       filtroCategoria?.addEventListener('change', aplicarFiltros);
