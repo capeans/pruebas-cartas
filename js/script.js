@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
       );
       if(!contenedor){ return; }
 
+      if(!contenedor){ return; }
+
       const filtroNombre = document.getElementById('filtro-nombre');
       const filtroCategoria = document.getElementById('filtro-categoria');
       const filtroPrecio = document.getElementById('filtro-precio');
@@ -234,9 +236,9 @@ const btnStock = document.querySelector('#btn-stock');
     let arr = [...productos];
     // búsqueda
     const q = (nombre.value||'').toLowerCase();
-    if(q) arr = arr.filter(p=> (p.nombre||'').toLowerCase().includes(q));
+    if(q) arr = arr.filter(p=> (p.nombre||'').toLowerCase().includes(q) || slugify(p.categoria).includes(slugify(q)));
     // filters
-    if(categoria.value) arr = arr.filter(p=> (p.categoria||'') === categoria.value);
+    if(categoria.value) arr = arr.filter(p=> slugify(p.categoria) === categoria.value);
     if(idioma.value) arr = arr.filter(p=> (p.idioma||'') === idioma.value);
     if(rareza.value) arr = arr.filter(p=> (p.rareza||'') === rareza.value);
     const max = Number(precio.value||1000);
@@ -340,8 +342,7 @@ const btnStock = document.querySelector('#btn-stock');
       productos = tipo ? data.filter(p=> p.tipo===tipo) : data.slice();
       // poblar selects
       const uniq = (arr)=> [...new Set(arr.filter(Boolean))];
-      uniq(productos.map(p=>p.categoria)).sort().forEach(v=>{
-        const o=document.createElement('option'); o.value=v; o.textContent=v; categoria.appendChild(o);
+      uniq(productos.map(p=>p.categoria)).sort().forEach(v=>{ const o=document.createElement('option'); o.value=slugify(v); o.textContent=v; categoria.appendChild(o);
       });
       uniq(productos.map(p=>p.idioma)).sort().forEach(v=>{
         const o=document.createElement('option'); o.value=v; o.textContent=v; idioma.appendChild(o);
@@ -358,7 +359,14 @@ const btnStock = document.querySelector('#btn-stock');
       precio.max = Math.ceil(maxPrecio);
       precio.value = Math.min(150, precio.max);
       precioValor.textContent = precio.value;
-
+      // URL params -> set initial controls before first render
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const categoriaInicial = (params.get('categoria') || '').toLowerCase();
+        const qInicial = params.get('q') || params.get('query') || params.get('nombre');
+        if (qInicial && nombre) nombre.value = qInicial;
+        if (categoriaInicial && categoria) categoria.value = categoriaInicial; // select uses slug values
+      } catch(e){}
       render();
-   });
+});
 })();
