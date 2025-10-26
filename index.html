@@ -1,31 +1,60 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-  <meta charset="utf-8"/>
-  <title>index.html - UzuTCG</title>
-  <link rel="icon" type="image/png" href="img/logo.png"/>
-  <link rel="stylesheet" href="css/styles.css"/>
+<meta charset="utf-8"/>
+<link href="img/logo.png" rel="icon" type="image/png"/>
+<title>UZUTCG - Cartas Coleccionables</title>
+<link href="css/styles.css" rel="stylesheet"/>
 </head>
-<body>
-  
-<header class="site-header" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;border-bottom:1px solid #ddd;">
-  <a href="index.html" class="logo" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#000;font-weight:600;">
-    <img src="img/logo.png" alt="UzuTCG" style="height:40px;width:auto;"/>
-    <span>UzuTCG</span>
-  </a>
-
-  <nav class="main-nav" style="display:flex;flex-wrap:wrap;gap:12px;font-size:14px;">
-    <a href="cajas.html" style="text-decoration:none;color:#000;font-weight:500;">Cajas</a>
-    <a href="cartas.html" style="text-decoration:none;color:#000;font-weight:500;">Cartas</a>
-    <a href="todo.html" style="text-decoration:none;color:#000;font-weight:500;">Tienda</a>
-    <a href="login.html" style="text-decoration:none;color:#000;font-weight:500;">Cuenta</a>
-    <a href="carrito.html" style="text-decoration:none;color:#000;font-weight:600;">
-      Carrito (<span id="cart-count">0</span>)
-    </a>
-  </nav>
+<body class="body-footer-fijo">
+<header>
+<img alt="Uzutcg Logo" src="img/logo.png" style="height:40px;"/>
+<nav>
+<a href="index.html">Inicio</a>
+<a href="cajas.html">Cajas</a>
+<a href="cartas.html">Cartas</a>
+<a href="nosotros.html">Nosotros</a>
+<a href="contacto.html">Contacto</a>
+<a href="tienda.html">Tienda</a></nav>
 </header>
-
-  <main>
+<!-- SECCIÓN HERO -->
+<section class="home-hero hero">
+<div class="container hero-grid">
+<div class="hero-copy">
+<h1>UzuTCG — <span class="accent">Cartas &amp; Cajas</span></h1>
+<p>Explora nuestro catálogo con filtros avanzados, favoritos y aperturas en directo.</p>
+<form action="categoria.html" class="searchbar" method="get">
+<input name="q" placeholder="Buscar por nombre o serie…" type="text"/>
+<button class="btn btn-primary" type="submit">Buscar</button>
+</form>
+<div class="chip-list">
+<a class="chip" href="todo.html?categoria=pokemon">Pokémon</a>
+<a class="chip" href="todo.html?categoria=one-piece">One Piece</a>
+<a class="chip" href="todo.html?categoria=digimon">Digimon</a>
+<a class="chip" href="todo.html?categoria=dragon-ball">Dragon Ball</a>
+<a class="chip" href="todo.html?categoria=naruto">Naruto</a>
+<a class="chip" href="todo.html?categoria=magic">Magic</a>
+</div>
+<div class="hero-cta">
+<a class="btn btn-primary" href="cartas.html">Ver Cartas</a>
+<a class="btn btn-ghost" href="cajas.html">Ver Cajas</a>
+</div>
+<ul class="trust">
+<li>🚚 Envío 24/48h</li>
+<li>🔒 Pago seguro</li>
+<li>🎥 Aperturas en directo</li>
+</ul>
+</div>
+<div class="hero-visual">
+<div class="logo-hero-wrap">
+<img alt="UzuTCG" class="logo-hero img-contain" loading="eager" src="assets/img/user_001.png"/>
+</div>
+</div>
+</div>
+</section>
+<!-- CATEGORÍAS CON IMAGEN -->
+<main>
 <h2 style="text-align: center; margin-top: 2em;">Categorías Populares</h2>
 <div class="carousel-container"><button class="carousel-btn left">❮</button><div class="carousel-track"><div class="category-img" onclick="window.location.href='todo.html?categoria=pokemon'">
 <img alt="Pokémon" src="img/fondos/pokemon.png"/>
@@ -262,23 +291,48 @@
 <p><strong>Precio:</strong> 29,99 €</p>
 </div>
 </div></div><button class="carousel-btn right">❯</button></div></main>
-  <footer style="text-align:center;font-size:13px;color:#666;border-top:1px solid #ddd;padding:24px 16px;margin-top:40px;">
-    © 2025 UzuTCG - Todos los derechos reservados
+<footer>
+    © 2025 Uzutcg - Todos los derechos reservados
   </footer>
-  
+<script defer="" src="js/script.js"></script>
+
 <script src="js/api.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/cart.js"></script>
 <script>
-async function refreshCartCount() {
-  try {
-    const cart = await getCartDetail();
-    const count = cart.reduce((sum, item) => sum + item.qty, 0);
-    const el = document.getElementById('cart-count');
-    if (el) el.textContent = count;
-  } catch(e) {}
-}
-(async () => { await refreshCartCount(); })();
+  async function refreshCartCount() {
+    try {
+      const cart = await getCartDetail();
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      const counter = document.getElementById('cart-count');
+      if (counter) counter.textContent = count;
+    } catch (e) {
+      console.warn(e);
+    }
+  }
+
+  function hookAddToCartButtons(){
+    document.querySelectorAll(".btn-add-cart").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const productId = parseInt(btn.dataset.productId, 10);
+        if (!productId) {
+          alert("Este producto no tiene ID interno todavía.");
+          return;
+        }
+        addToLocalCart(productId, 1);
+        await syncCartToServer();
+        await refreshCartCount();
+        btn.textContent = "Añadido ✓";
+        setTimeout(() => { btn.textContent = "Añadir al carrito"; }, 1200);
+      });
+    });
+  }
+
+  // inicialización al cargar la página
+  (async () => {
+    hookAddToCartButtons();
+    await refreshCartCount();
+  })();
 </script>
 
 </body>

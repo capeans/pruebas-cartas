@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang='es'><head><title>UzuTCG • Carrito</title><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><link rel='icon' href='assets/img/favicon.svg' type='image/svg+xml'><link rel='stylesheet' href='styles.css'><script defer src='bundle.js'></script></head><body><header class='header'><div class='container header-inner'><a class='brand' href='index.html'><img class='brand-logo' src='assets/img/logo.svg' alt='UzuTCG'><span class='brand-name'>UzuTCG</span></a><nav id='site-nav' class='nav'><a href='cartas.html'>Cartas</a><a href='cajas.html'>Cajas</a><a href='categoria.html?cat=Pok%C3%A9mon'>Categorías</a><a href='conecta.html'>Conecta</a></nav><a class='btn cart-icon' href='cart.html' aria-label='Carrito'>🛒<span id='cart-count' class='cart-count' style='display:none'>0</span></a></div></header>
+<section class='section'><div class='container'>
+<header class='section-head'><h2>Tu carrito</h2><p>Revisa productos y continúa a pago.</p></header>
+<div id='cart-host'></div>
+<div class='actions' style='justify-content:flex-end'><a class='btn' href='index.html'>Seguir comprando</a> <a class='btn btn-primary' href='checkout.html'>Ir a pagar</a></div>
+</div></section>
+<script>
+(function(){
+  const host = document.getElementById('cart-host');
+  function render(){
+    const items = UZU.cartLoad();
+    if(!items.length){ host.innerHTML = "<div class='empty'>Tu carrito está vacío.</div>"; return; }
+    let total = 0;
+    host.innerHTML = items.map((it,idx)=>{
+      total += it.price * it.qty;
+      return "<div class='card' style='display:grid;grid-template-columns:120px 1fr auto;gap:10px;align-items:center;margin-bottom:12px'>"
+        +"<img class='thumb' style='aspect-ratio:1/1' src='"+it.img.replace(".webp",".svg")+"' alt='"+it.name+"'>"
+        +"<div class='wrap'><h3>"+it.name+"</h3><div class='meta'>"+(it.type==='box'?'Caja':'Carta')+" · "+it.price.toFixed(2)+" €</div>"
+        +"<div class='actions'><button class='btn' data-dec='"+idx+"'>−</button><span>Cantidad: "+it.qty+"</span><button class='btn' data-inc='"+idx+"'>+</button></div></div>"
+        +"<div class='wrap'><strong>"+(it.price*it.qty).toFixed(2)+" €</strong><button class='btn' data-del='"+idx+"'>Eliminar</button></div>"
+        +"</div>";
+    }).join('') + "<div class='card'><div class='wrap'><h3>Total</h3><strong>"+total.toFixed(2)+" €</strong></div></div>";
+    host.querySelectorAll('[data-dec]').forEach(b=>b.onclick=()=>{ UZU.changeQty(+b.dataset.dec,-1); render(); });
+    host.querySelectorAll('[data-inc]').forEach(b=>b.onclick=()=>{ UZU.changeQty(+b.dataset.inc, 1); render(); });
+    host.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>{ UZU.removeFromCart(+b.dataset.del); render(); });
+  }
+  render();
+})();
+</script>
+<footer class='footer'><div class='container footer-grid'><div><a class='brand' href='index.html'><img class='brand-logo' src='assets/img/logo.svg' alt='UzuTCG'><span class='brand-name'>UzuTCG</span></a><p>© <span id='year'></span> UzuTCG</p></div><nav><a href='#' onclick='alert("Aviso legal (demo)");return false;'>Aviso legal</a> · <a href='#' onclick='alert("Privacidad (demo)");return false;'>Privacidad</a></nav></div></footer><script>document.getElementById('year').textContent=new Date().getFullYear();</script></body></html>
