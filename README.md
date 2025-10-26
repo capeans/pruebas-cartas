@@ -26,3 +26,7 @@ Este es un sitio web estático para mostrar cajas y cartas sueltas de juegos com
 
 ¡Y ya está! Tu sitio estará en línea y funcional.
 
+
+
+## Backend
+El backend Node.js está en la carpeta `server/`.
