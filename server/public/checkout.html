@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Datos de envío</title>
+</head>
+<body style="font-family:sans-serif;max-width:900px;margin:20px auto;padding:16px;">
+  <header style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+    <h1>Envío y pago</h1>
+    <nav>
+      <a href="carrito.html" style="margin-right:16px;">Volver al carrito</a>
+      <a href="#" onclick="logout();return false;">Salir</a>
+    </nav>
+  </header>
+
+  <section style="display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:900px;">
+    <div>
+      <h2 style="font-size:16px;margin-bottom:12px;">Dirección de envío</h2>
+
+      <label>Nombre completo</label>
+      <input id="shipName" style="width:100%;padding:8px;margin-bottom:12px;" />
+
+      <label>Dirección</label>
+      <input id="shipAddress" style="width:100%;padding:8px;margin-bottom:12px;" />
+
+      <label>Ciudad</label>
+      <input id="shipCity" style="width:100%;padding:8px;margin-bottom:12px;" />
+
+      <label>Código Postal</label>
+      <input id="shipZip" style="width:100%;padding:8px;margin-bottom:12px;" />
+
+      <label>Teléfono</label>
+      <input id="shipPhone" style="width:100%;padding:8px;margin-bottom:20px;" />
+
+      <button onclick="payNow()" style="padding:10px 16px;background:#222;color:#fff;border:none;border-radius:6px;cursor:pointer;">
+        Pagar ahora
+      </button>
+
+      <p id="checkout-error" style="color:#c00;font-size:14px;margin-top:10px;"></p>
+    </div>
+
+    <aside style="border:1px solid #ddd;border-radius:8px;padding:16px;">
+      <h2 style="font-size:16px;margin-bottom:12px;">Resumen del pedido</h2>
+      <ul id="checkout-items" style="list-style:none;padding:0;margin:0;"></ul>
+      <div style="display:flex;justify-content:space-between;font-weight:600;margin-top:16px;font-size:16px;">
+        <span>Total</span>
+        <span id="checkout-total">0 €</span>
+      </div>
+    </aside>
+  </section>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script>
+    if (!isLoggedIn()) {
+      window.location.href = "login.html";
+    } else {
+      loadCheckoutCart().catch(err => {
+        document.getElementById("checkout-error").textContent = err.message || "Error cargando carrito";
+      });
+    }
+  </script>
+</body>
+</html>
