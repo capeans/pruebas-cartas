@@ -92,9 +92,9 @@ btnEl.addEventListener("click",()=>{
 <footer class="footer"><div class="container footer-grid"><div><h3>UzuTCG</h3><p>Cartas y cajas coleccionables.</p><small>© <span id="year"></span> UzuTCG</small></div></div></footer>
 <script>UZU.year();UZU.updateCartCount();</script>
 
-<script src="js/api.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/cart.js"></script>
+
+
+
 <script>
   (async () => {
     try {
@@ -104,6 +104,22 @@ btnEl.addEventListener("click",()=>{
       if (el) el.textContent = count;
     } catch(e) {}
   })();
+</script>
+
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/cart.js"></script>
+<script>
+  async function refreshCartCount() {
+    try {
+      const cart = await getCartDetail();
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      const el = document.getElementById('cart-count');
+      if (el) el.textContent = count;
+    } catch(e) {}
+  }
+  (async () => { await refreshCartCount(); })();
 </script>
 
 </body>
