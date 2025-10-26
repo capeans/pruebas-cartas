@@ -1,12 +1,10 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
 model User {
   id            Int       @id @default(autoincrement())
   email         String    @unique
@@ -16,10 +14,8 @@ model User {
   address       String?
   city          String?
   zip           String?
-
   orders        Order[]
 }
-
 model Product {
   id          Int       @id @default(autoincrement())
   name        String
@@ -28,27 +24,23 @@ model Product {
   priceCents  Int
   stock       Int
   imageUrl    String
-
   orderItems  OrderItem[]
 }
-
 model Order {
   id           Int          @id @default(autoincrement())
   user         User         @relation(fields: [userId], references: [id])
   userId       Int
   createdAt    DateTime     @default(now())
-  status       String       // "pending_payment" | "pending_shipment" | "shipped"
+  status       String
   shipName     String
   shipAddress  String
   shipCity     String
   shipZip      String
   shipPhone    String
   totalCents   Int
-  stripeId     String?      // checkoutSession.id de Stripe
-
+  stripeId     String?
   orderItems   OrderItem[]
 }
-
 model OrderItem {
   id         Int      @id @default(autoincrement())
   order      Order    @relation(fields: [orderId], references: [id])
@@ -56,5 +48,5 @@ model OrderItem {
   product    Product  @relation(fields: [productId], references: [id])
   productId  Int
   quantity   Int
-  priceCents Int      // precio unitario en el momento
+  priceCents Int
 }
