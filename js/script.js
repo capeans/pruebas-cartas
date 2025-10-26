@@ -224,6 +224,7 @@ const btnStock = document.querySelector('#btn-stock');
         <div class="price">${Number(p.precio).toFixed(2)} €</div>
         <div class="card-actions">
           <button class="btn-outline" data-big="${p.imagen}">Ver grande</button>
+          <button class="btn-add-cart" data-product-id="${p.id ?? (idx+1)}">Añadir al carrito</button>
           <button class="btn-heart ${inFav(favId(p, idx)) ? 'active':''}" data-fav="${favId(p, idx)}">
             <span class="heart">❤</span> ${inFav(favId(p, idx)) ? 'Quitar' : 'Favorito'}
           </button>
@@ -370,3 +371,33 @@ const btnStock = document.querySelector('#btn-stock');
       render();
 });
 })();
+
+
+/* === Ecommerce cart hooks === */
+function hookAddToCartButtons(){
+  document.querySelectorAll(".btn-add-cart").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const productId = parseInt(btn.dataset.productId, 10);
+      if (!productId) {
+        alert("Este producto no tiene ID interno todavía.");
+        return;
+      }
+      if (typeof addToLocalCart === "function") {
+        addToLocalCart(productId, 1);
+      }
+      if (typeof syncCartToServer === "function") {
+        await syncCartToServer();
+      }
+      if (typeof refreshCartCount === "function") {
+        await refreshCartCount();
+      }
+      btn.textContent = "Añadido ✓";
+      setTimeout(()=>{ btn.textContent = "Añadir al carrito"; },1200);
+    });
+  });
+}
+document.addEventListener("DOMContentLoaded", ()=>{
+  if (typeof hookAddToCartButtons === "function") {
+    hookAddToCartButtons();
+  }
+});
