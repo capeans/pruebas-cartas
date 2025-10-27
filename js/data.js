@@ -9,9 +9,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": true,
     "img": "img/cajas/digimon_1.png",
-    "description": "Caja sellada Digimon nº 1. Contenido oficial.",
-    "bestseller": true,
-    "language": "Spanish"
+    "description": "Caja sellada Digimon n\u00ba 1. Contenido oficial.",
+    "bestseller": true
   },
   {
     "id": "box-digimon-2",
@@ -23,9 +22,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/digimon_2.png",
-    "description": "Caja sellada Digimon nº 2. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Digimon n\u00ba 2. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-digimon-3",
@@ -37,9 +35,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/digimon_3.png",
-    "description": "Caja sellada Digimon nº 3. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Digimon n\u00ba 3. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-digimon-4",
@@ -51,9 +48,8 @@ const PRODUCTS = [
     "stock": 0,
     "isNew": false,
     "img": "img/cajas/digimon_4.png",
-    "description": "Caja sellada Digimon nº 4. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Digimon n\u00ba 4. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-dragonball-1",
@@ -65,9 +61,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": true,
     "img": "img/cajas/dragonball_1.png",
-    "description": "Caja sellada Dragonball nº 1. Contenido oficial.",
-    "bestseller": true,
-    "language": "Spanish"
+    "description": "Caja sellada Dragonball n\u00ba 1. Contenido oficial.",
+    "bestseller": true
   },
   {
     "id": "box-dragonball-2",
@@ -79,9 +74,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/dragonball_2.png",
-    "description": "Caja sellada Dragonball nº 2. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Dragonball n\u00ba 2. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-dragonball-3",
@@ -93,9 +87,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/dragonball_3.png",
-    "description": "Caja sellada Dragonball nº 3. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Dragonball n\u00ba 3. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-dragonball-4",
@@ -107,9 +100,8 @@ const PRODUCTS = [
     "stock": 0,
     "isNew": false,
     "img": "img/cajas/dragonball_4.png",
-    "description": "Caja sellada Dragonball nº 4. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Dragonball n\u00ba 4. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-magic-1",
@@ -121,9 +113,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": true,
     "img": "img/cajas/magic_1.png",
-    "description": "Caja sellada Magic nº 1. Contenido oficial.",
-    "bestseller": true,
-    "language": "Spanish"
+    "description": "Caja sellada Magic n\u00ba 1. Contenido oficial.",
+    "bestseller": true
   },
   {
     "id": "box-magic-2",
@@ -135,9 +126,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/magic_2.png",
-    "description": "Caja sellada Magic nº 2. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Magic n\u00ba 2. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-magic-3",
@@ -149,9 +139,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/magic_3.png",
-    "description": "Caja sellada Magic nº 3. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Magic n\u00ba 3. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-magic-4",
@@ -163,9 +152,8 @@ const PRODUCTS = [
     "stock": 0,
     "isNew": false,
     "img": "img/cajas/magic_4.png",
-    "description": "Caja sellada Magic nº 4. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Magic n\u00ba 4. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-one_piece-1",
@@ -177,9 +165,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": true,
     "img": "img/cajas/one_piece_1.png",
-    "description": "Caja sellada One Piece nº 1. Contenido oficial.",
-    "bestseller": true,
-    "language": "Spanish"
+    "description": "Caja sellada One Piece n\u00ba 1. Contenido oficial.",
+    "bestseller": true
   },
   {
     "id": "box-one_piece-2",
@@ -191,9 +178,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/one_piece_2.png",
-    "description": "Caja sellada One Piece nº 2. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada One Piece n\u00ba 2. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-one_piece-3",
@@ -205,9 +191,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/one_piece_3.png",
-    "description": "Caja sellada One Piece nº 3. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada One Piece n\u00ba 3. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-one_piece-4",
@@ -219,9 +204,8 @@ const PRODUCTS = [
     "stock": 0,
     "isNew": false,
     "img": "img/cajas/one_piece_4.png",
-    "description": "Caja sellada One Piece nº 4. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada One Piece n\u00ba 4. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-one_piece-5",
@@ -233,9 +217,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/one_piece_5.png",
-    "description": "Caja sellada One Piece nº 5. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada One Piece n\u00ba 5. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-one_piece-1",
@@ -247,9 +230,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": true,
     "img": "img/cajas/one_piece_1.png",
-    "description": "Caja sellada One_Piece nº 1. Contenido oficial.",
-    "bestseller": true,
-    "language": "Spanish"
+    "description": "Caja sellada One_Piece n\u00ba 1. Contenido oficial.",
+    "bestseller": true
   },
   {
     "id": "box-one_piece-2",
@@ -261,9 +243,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/one_piece_2.png",
-    "description": "Caja sellada One_Piece nº 2. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada One_Piece n\u00ba 2. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-one_piece-3",
@@ -275,9 +256,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/one_piece_3.png",
-    "description": "Caja sellada One_Piece nº 3. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada One_Piece n\u00ba 3. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-pokemon-1",
@@ -289,9 +269,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": true,
     "img": "img/cajas/pokemon_1.png",
-    "description": "Caja sellada Pokemon nº 1. Contenido oficial.",
-    "bestseller": true,
-    "language": "Spanish"
+    "description": "Caja sellada Pokemon n\u00ba 1. Contenido oficial.",
+    "bestseller": true
   },
   {
     "id": "box-pokemon-2",
@@ -303,9 +282,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/pokemon_2.png",
-    "description": "Caja sellada Pokemon nº 2. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Pokemon n\u00ba 2. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-pokemon-3",
@@ -317,9 +295,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/pokemon_3.png",
-    "description": "Caja sellada Pokemon nº 3. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Pokemon n\u00ba 3. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-pokemon-4",
@@ -331,9 +308,8 @@ const PRODUCTS = [
     "stock": 0,
     "isNew": false,
     "img": "img/cajas/pokemon_4.png",
-    "description": "Caja sellada Pokemon nº 4. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Pokemon n\u00ba 4. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-yugioh-1",
@@ -345,9 +321,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": true,
     "img": "img/cajas/yugioh_1.png",
-    "description": "Caja sellada Yugioh nº 1. Contenido oficial.",
-    "bestseller": true,
-    "language": "Spanish"
+    "description": "Caja sellada Yugioh n\u00ba 1. Contenido oficial.",
+    "bestseller": true
   },
   {
     "id": "box-yugioh-2",
@@ -359,9 +334,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/yugioh_2.png",
-    "description": "Caja sellada Yugioh nº 2. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Yugioh n\u00ba 2. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-yugioh-3",
@@ -373,9 +347,8 @@ const PRODUCTS = [
     "stock": 5,
     "isNew": false,
     "img": "img/cajas/yugioh_3.png",
-    "description": "Caja sellada Yugioh nº 3. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Yugioh n\u00ba 3. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "box-yugioh-4",
@@ -387,9 +360,8 @@ const PRODUCTS = [
     "stock": 0,
     "isNew": false,
     "img": "img/cajas/yugioh_4.png",
-    "description": "Caja sellada Yugioh nº 4. Contenido oficial.",
-    "bestseller": false,
-    "language": "Spanish"
+    "description": "Caja sellada Yugioh n\u00ba 4. Contenido oficial.",
+    "bestseller": false
   },
   {
     "id": "card-digimon-1",
@@ -402,8 +374,7 @@ const PRODUCTS = [
     "isNew": true,
     "img": "img/cartas/digimon_1.png",
     "description": "Carta suelta Digimon #1. Estado Near Mint (demo).",
-    "bestseller": true,
-    "language": "Spanish"
+    "bestseller": true
   },
   {
     "id": "card-digimon-2",
@@ -416,8 +387,7 @@ const PRODUCTS = [
     "isNew": false,
     "img": "img/cartas/digimon_2.png",
     "description": "Carta suelta Digimon #2. Estado Near Mint (demo).",
-    "bestseller": true,
-    "language": "Spanish"
+    "bestseller": true
   },
   {
     "id": "card-digimon-3",
@@ -430,8 +400,7 @@ const PRODUCTS = [
     "isNew": false,
     "img": "img/cartas/digimon_3.jpg",
     "description": "Carta suelta Digimon #3. Estado Near Mint (demo).",
-    "bestseller": false,
-    "language": "Japanese"
+    "bestseller": false
   },
   {
     "id": "card-digimon-4",
@@ -444,8 +413,7 @@ const PRODUCTS = [
     "isNew": false,
     "img": "img/cartas/digimon_4.png",
     "description": "Carta suelta Digimon #4. Estado Near Mint (demo).",
-    "bestseller": false,
-    "language": "Spanish"
+    "bestseller": false
   },
   {
     "id": "card-onepiece-1",
@@ -458,8 +426,7 @@ const PRODUCTS = [
     "isNew": true,
     "img": "img/cartas/onepiece_1.png",
     "description": "Carta suelta Onepiece #1. Estado Near Mint (demo).",
-    "bestseller": true,
-    "language": "Spanish"
+    "bestseller": true
   },
   {
     "id": "card-onepiece-2",
@@ -472,8 +439,7 @@ const PRODUCTS = [
     "isNew": false,
     "img": "img/cartas/onepiece_2.jpg",
     "description": "Carta suelta Onepiece #2. Estado Near Mint (demo).",
-    "bestseller": true,
-    "language": "Japanese"
+    "bestseller": true
   },
   {
     "id": "card-onepiece-3",
@@ -486,8 +452,7 @@ const PRODUCTS = [
     "isNew": false,
     "img": "img/cartas/onepiece_3.png",
     "description": "Carta suelta Onepiece #3. Estado Near Mint (demo).",
-    "bestseller": false,
-    "language": "Spanish"
+    "bestseller": false
   },
   {
     "id": "card-onepiece-4",
@@ -500,8 +465,7 @@ const PRODUCTS = [
     "isNew": false,
     "img": "img/cartas/onepiece_4.jpg",
     "description": "Carta suelta Onepiece #4. Estado Near Mint (demo).",
-    "bestseller": false,
-    "language": "Japanese"
+    "bestseller": false
   },
   {
     "id": "card-onepiece-5",
@@ -514,8 +478,7 @@ const PRODUCTS = [
     "isNew": false,
     "img": "img/cartas/onepiece_5.png",
     "description": "Carta suelta Onepiece #5. Estado Near Mint (demo).",
-    "bestseller": false,
-    "language": "Spanish"
+    "bestseller": false
   },
   {
     "id": "card-pokemon-1",
@@ -528,8 +491,7 @@ const PRODUCTS = [
     "isNew": true,
     "img": "img/cartas/pokemon_1.png",
     "description": "Carta suelta Pokemon #1. Estado Near Mint (demo).",
-    "bestseller": true,
-    "language": "Spanish"
+    "bestseller": true
   },
   {
     "id": "card-pokemon-2",
@@ -542,8 +504,7 @@ const PRODUCTS = [
     "isNew": false,
     "img": "img/cartas/pokemon_2.png",
     "description": "Carta suelta Pokemon #2. Estado Near Mint (demo).",
-    "bestseller": true,
-    "language": "Spanish"
+    "bestseller": true
   },
   {
     "id": "card-pokemon-3",
@@ -556,8 +517,7 @@ const PRODUCTS = [
     "isNew": false,
     "img": "img/cartas/pokemon_3.jpg",
     "description": "Carta suelta Pokemon #3. Estado Near Mint (demo).",
-    "bestseller": false,
-    "language": "Japanese"
+    "bestseller": false
   },
   {
     "id": "card-pokemon-4",
@@ -570,8 +530,7 @@ const PRODUCTS = [
     "isNew": false,
     "img": "img/cartas/pokemon_4.png",
     "description": "Carta suelta Pokemon #4. Estado Near Mint (demo).",
-    "bestseller": false,
-    "language": "Spanish"
+    "bestseller": false
   },
   {
     "id": "card-pokemon-5",
@@ -584,83 +543,7 @@ const PRODUCTS = [
     "isNew": false,
     "img": "img/cartas/pokemon_5.jpg",
     "description": "Carta suelta Pokemon #5. Estado Near Mint (demo).",
-    "bestseller": false,
-    "language": "Japanese"
-  },
-  {
-    "id": "oth-album",
-    "name": "Álbum para cartas",
-    "type": "other",
-    "category": "Otros",
-    "kind": "Albums",
-    "rarity": null,
-    "price": 19.99,
-    "stock": 10,
-    "isNew": true,
-    "img": "img/otros/album.png",
-    "description": "Albums para TCG.",
-    "bestseller": false,
-    "language": "Universal"
-  },
-  {
-    "id": "oth-deckbox1",
-    "name": "Deck Box",
-    "type": "other",
-    "category": "Otros",
-    "kind": "Deck Boxes",
-    "rarity": null,
-    "price": 9.99,
-    "stock": 10,
-    "isNew": true,
-    "img": "img/otros/deckbox1.webp",
-    "description": "Deck Boxes para TCG.",
-    "bestseller": false,
-    "language": "Universal"
-  },
-  {
-    "id": "oth-deckbox2",
-    "name": "Deck Box",
-    "type": "other",
-    "category": "Otros",
-    "kind": "Deck Boxes",
-    "rarity": null,
-    "price": 9.99,
-    "stock": 10,
-    "isNew": true,
-    "img": "img/otros/deckbox2.jpg",
-    "description": "Deck Boxes para TCG.",
-    "bestseller": false,
-    "language": "Universal"
-  },
-  {
-    "id": "oth-funda",
-    "name": "Fundas (Sleeves) — 100u",
-    "type": "other",
-    "category": "Otros",
-    "kind": "Sleeves",
-    "rarity": null,
-    "price": 12.99,
-    "stock": 10,
-    "isNew": true,
-    "img": "img/otros/funda.webp",
-    "description": "Sleeves para TCG.",
-    "bestseller": true,
-    "language": "Universal"
-  },
-  {
-    "id": "oth-tapete",
-    "name": "Playmat",
-    "type": "other",
-    "category": "Otros",
-    "kind": "Playmats",
-    "rarity": null,
-    "price": 24.99,
-    "stock": 10,
-    "isNew": true,
-    "img": "img/otros/tapete.webp",
-    "description": "Playmats para TCG.",
-    "bestseller": true,
-    "language": "Universal"
+    "bestseller": false
   }
 ];
 
@@ -674,17 +557,4 @@ const CATEGORIES = [
   "Spiderman",
   "Metazco",
   "Otros"
-];
-const LANGUAGES = [
-  "English",
-  "Spanish",
-  "Japanese",
-  "Universal"
-];
-const OTHER_KINDS = [
-  "Sleeves",
-  "Albums",
-  "Deck Boxes",
-  "Playmats",
-  "Others"
 ];

@@ -1,37 +1,16 @@
-
 let modalOverlay;
-function bindModalClose(){
-  if(!modalOverlay) return;
-  // prevent multiple bindings
-  if(modalOverlay._bound) return;
-  modalOverlay._bound = true;
-
-  // Close on overlay click
-  modalOverlay.addEventListener("click", (e)=>{
-    if(e.target === modalOverlay) closeModal();
-  });
-  // Close on button
-  document.addEventListener("click", e => {
-    if(e.target.matches(".modal-close")) closeModal();
-  });
-}
-
 function openModal(product){
-  modalOverlay = document.querySelector(".modal-overlay");
+  if(!modalOverlay){
+    modalOverlay = document.querySelector(".modal-overlay");
+  }
   if(!modalOverlay) return;
 
-  // Stop click from bubbling out of modal content
-  const modalEl = modalOverlay.querySelector(".modal");
-  if(modalEl){
-    modalEl.addEventListener("click", (e)=> e.stopPropagation());
-  }
-
-  modalOverlay.querySelector(".modal-img img").src = product.img || "";
-  modalOverlay.querySelector(".modal-body h3").textContent = product.name || "";
+  modalOverlay.querySelector(".modal-img img").src = product.img;
+  modalOverlay.querySelector(".modal-body h3").textContent = product.name;
   modalOverlay.querySelector(".modal-body .modal-desc").textContent = product.description || "";
   modalOverlay.querySelector(".modal-body .modal-cat").textContent = product.category || "";
   modalOverlay.querySelector(".modal-body .modal-rarity").textContent = product.rarity || "-";
-  modalOverlay.querySelector(".modal-price").textContent = money(product.price || 0);
+  modalOverlay.querySelector(".modal-price").textContent = money(product.price);
 
   const stockEl = modalOverlay.querySelector(".modal-body .modal-stock");
   stockEl.textContent = product.stock > 0 ? product.stock + " ud." : "Sin stock";
@@ -39,23 +18,21 @@ function openModal(product){
 
   const addBtn = modalOverlay.querySelector(".modal-add-btn");
   const qtyInput = modalOverlay.querySelector(".modal-qty");
-  if(qtyInput) qtyInput.value = 1;
-  if(addBtn){
-    addBtn.onclick = () => {
-      const q = parseInt(qtyInput?.value || "1",10) || 1;
-      addToCart(product.id,q);
-    };
-  }
+  qtyInput.value = 1;
+  addBtn.onclick = () => {
+    const q = parseInt(qtyInput.value,10) || 1;
+    addToCart(product.id,q);
+  };
 
   modalOverlay.style.display = "flex";
-  bindModalClose();
 }
 function closeModal(){
-  modalOverlay = document.querySelector(".modal-overlay");
   if(modalOverlay){
     modalOverlay.style.display = "none";
   }
 }
+document.addEventListener("click", e => {
+  if(e.target.matches(".modal-close")) closeModal();
   if(e.target === modalOverlay) closeModal();
 });
 
@@ -149,8 +126,6 @@ function filterProducts({
   text="",
   category="",
   rarity="",
-  language="",
-  otherKind="",
   minPrice=0,
   maxPrice=99999,
   inStockOnly=false,
@@ -167,14 +142,6 @@ function filterProducts({
       } else {
         if(p.category.toLowerCase() !== category.toLowerCase()) return false;
       }
-    }
-
-    if(language && language!==""){
-      if((p.language||"").toLowerCase() !== language.toLowerCase()) return false;
-    }
-
-    if(otherKind && otherKind!=="" ){
-      if((p.kind||"").toLowerCase() !== otherKind.toLowerCase()) return false;
     }
 
     if(rarity && rarity!==""){
@@ -238,8 +205,6 @@ function initFilterPage({typesAllowed, gridSelector}){
   const textEl = document.querySelector("#filter-text");
   const catEl = document.querySelector("#filter-cat");
   const rarEl = document.querySelector("#filter-rarity");
-  const langEl = document.querySelector("#filter-lang");
-  const kindEl = document.querySelector("#filter-kind");
   const minEl = document.querySelector("#filter-min");
   const maxEl = document.querySelector("#filter-max");
   const stockEl = document.querySelector("#filter-stock");
@@ -250,8 +215,6 @@ function initFilterPage({typesAllowed, gridSelector}){
       text: textEl?.value || "",
       category: catEl?.value || "",
       rarity: rarEl?.value || "",
-      language: langEl?.value || "",
-      otherKind: kindEl?.value || "",
       minPrice: parseFloat(minEl?.value || "0"),
       maxPrice: parseFloat(maxEl?.value || "99999"),
       inStockOnly: stockEl?.checked || false,
@@ -266,7 +229,7 @@ function initFilterPage({typesAllowed, gridSelector}){
     });
   }
 
-  [textEl,catEl,rarEl,langEl,kindEl,minEl,maxEl,stockEl,newEl].forEach(ctrl=>{
+  [textEl,catEl,rarEl,minEl,maxEl,stockEl,newEl].forEach(ctrl=>{
     if(!ctrl) return;
     ctrl.addEventListener("input", apply);
     ctrl.addEventListener("change", apply);
@@ -367,15 +330,3 @@ document.addEventListener("DOMContentLoaded", () => {
     initCartPage();
   }
 });
-
-
-// --- Simple demo auth & checkout ---
-function getUser(){
-  try { return JSON.parse(localStorage.getItem("uzutcg_user")) || null; } catch { return null; }
-}
-function setUser(u){
-  localStorage.setItem("uzutcg_user", JSON.stringify(u));
-}
-function logout(){ localStorage.removeItem("uzutcg_user"); }
-
-function ensureCheckoutUI(){}
