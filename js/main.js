@@ -79,7 +79,7 @@ function createProductCard(product, {showAdd=true, clickableImage=true}={}){
   const meta = document.createElement("div");
   meta.className = "product-meta";
   meta.innerHTML = `
-    Rarity: ${product.rarity || "-"}<br>
+    Rareza: ${product.rarity || "-"}<br>
     ${product.isNew ? "Nuevo · " : ""}${product.bestseller ? "Más vendido" : "" }
   `;
   body.appendChild(meta);
