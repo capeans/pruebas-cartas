@@ -1,16 +1,20 @@
 
-// --- Modal (robust) ---
+
+// --- Modal (robust, reusable) ---
 let modalOverlayRef = null;
 function getModal(){
   if(!modalOverlayRef){
     modalOverlayRef = document.querySelector(".modal-overlay");
     if(modalOverlayRef){
-      // single binding for closing
+      // close when clicking dark background
       modalOverlayRef.addEventListener("click", (e)=>{
         if(e.target === modalOverlayRef) closeModal();
       });
-      const btn = modalOverlayRef.querySelector(".modal-close");
-      if(btn) btn.addEventListener("click", closeModal);
+      // close button
+      const btnClose = modalOverlayRef.querySelector(".modal-close");
+      if(btnClose){
+        btnClose.addEventListener("click", closeModal);
+      }
     }
   }
   return modalOverlayRef;
@@ -18,8 +22,11 @@ function getModal(){
 function openModal(product){
   const overlay = getModal();
   if(!overlay) return;
-  const modal = overlay.querySelector(".modal");
-  if(modal) modal.addEventListener("click", (e)=> e.stopPropagation(), {once:true});
+  const modalEl = overlay.querySelector(".modal");
+  // stop clicks inside modal from closing
+  if(modalEl){
+    modalEl.addEventListener("click", (e)=> e.stopPropagation());
+  }
 
   overlay.querySelector(".modal-img img").src = product.img || "";
   overlay.querySelector(".modal-body h3").textContent = product.name || "";
@@ -41,11 +48,13 @@ function openModal(product){
       addToCart(product.id,q);
     };
   }
+
   overlay.style.display = "flex";
 }
 function closeModal(){
   const overlay = getModal();
-  if(overlay) overlay.style.display = "none";
+  if(!overlay) return;
+  overlay.style.display = "none";
 }
 
 // --- Product card factory ---
