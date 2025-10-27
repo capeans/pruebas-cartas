@@ -126,6 +126,8 @@ function filterProducts({
   text="",
   category="",
   rarity="",
+  language="",
+  otherKind="",
   minPrice=0,
   maxPrice=99999,
   inStockOnly=false,
@@ -142,6 +144,14 @@ function filterProducts({
       } else {
         if(p.category.toLowerCase() !== category.toLowerCase()) return false;
       }
+    }
+
+    if(language && language!==""){
+      if((p.language||"").toLowerCase() !== language.toLowerCase()) return false;
+    }
+
+    if(otherKind && otherKind!=="" ){
+      if((p.kind||"").toLowerCase() !== otherKind.toLowerCase()) return false;
     }
 
     if(rarity && rarity!==""){
@@ -205,6 +215,8 @@ function initFilterPage({typesAllowed, gridSelector}){
   const textEl = document.querySelector("#filter-text");
   const catEl = document.querySelector("#filter-cat");
   const rarEl = document.querySelector("#filter-rarity");
+  const langEl = document.querySelector("#filter-lang");
+  const kindEl = document.querySelector("#filter-kind");
   const minEl = document.querySelector("#filter-min");
   const maxEl = document.querySelector("#filter-max");
   const stockEl = document.querySelector("#filter-stock");
@@ -215,6 +227,8 @@ function initFilterPage({typesAllowed, gridSelector}){
       text: textEl?.value || "",
       category: catEl?.value || "",
       rarity: rarEl?.value || "",
+      language: langEl?.value || "",
+      otherKind: kindEl?.value || "",
       minPrice: parseFloat(minEl?.value || "0"),
       maxPrice: parseFloat(maxEl?.value || "99999"),
       inStockOnly: stockEl?.checked || false,
@@ -229,7 +243,7 @@ function initFilterPage({typesAllowed, gridSelector}){
     });
   }
 
-  [textEl,catEl,rarEl,minEl,maxEl,stockEl,newEl].forEach(ctrl=>{
+  [textEl,catEl,rarEl,langEl,kindEl,minEl,maxEl,stockEl,newEl].forEach(ctrl=>{
     if(!ctrl) return;
     ctrl.addEventListener("input", apply);
     ctrl.addEventListener("change", apply);
@@ -330,3 +344,89 @@ document.addEventListener("DOMContentLoaded", () => {
     initCartPage();
   }
 });
+
+
+// --- Simple demo auth & checkout ---
+function getUser(){
+  try { return JSON.parse(localStorage.getItem("uzutcg_user")) || null; } catch { return null; }
+}
+function setUser(u){
+  localStorage.setItem("uzutcg_user", JSON.stringify(u));
+}
+function logout(){ localStorage.removeItem("uzutcg_user"); }
+
+function ensureCheckoutUI(){
+  if(document.body.dataset.page !== "carrito") return;
+  const wrap = document.querySelector(".cart-summary");
+  if(!wrap) return;
+
+  const user = getUser();
+  let authNode = document.querySelector(".auth-box");
+  if(!authNode){
+    authNode = document.createElement("div");
+    authNode.className = "auth-box";
+    authNode.style.borderTop = "1px solid var(--border-soft)";
+    authNode.style.paddingTop = "12px";
+    authNode.style.display = "grid";
+    authNode.style.gap = "8px";
+    wrap.insertBefore(authNode, wrap.firstChild);
+  }
+
+  if(!user){
+    authNode.innerHTML = `
+      <div style="font-size:.85rem;color:var(--text-main);font-weight:600;">Inicia sesión para pagar</div>
+      <div style="display:grid;gap:8px;">
+        <input id="login-email" type="text" placeholder="tu@email.com" class="qty-input" style="width:100%;">
+        <input id="login-name" type="text" placeholder="Tu nombre" class="qty-input" style="width:100%;">
+        <button class="btn-add" id="btn-login" style="width:fit-content;">Iniciar sesión (demo)</button>
+      </div>
+    `;
+    authNode.querySelector("#btn-login").addEventListener("click", ()=>{
+      const email = authNode.querySelector("#login-email").value.trim();
+      const name = authNode.querySelector("#login-name").value.trim();
+      if(!email || !name){ alert("Rellena email y nombre"); return; }
+      setUser({email,name});
+      ensureCheckoutUI();
+    });
+  } else {
+    authNode.innerHTML = `
+      <div style="font-size:.85rem;color:var(--text-dim);">Sesión iniciada como <span style="color:var(--text-main);font-weight:600;">${user.name}</span> (${user.email})</div>
+      <div><button class="btn-add" id="btn-logout" style="background:#e2e8f0;color:#000;">Cerrar sesión</button></div>
+    `;
+    authNode.querySelector("#btn-logout").addEventListener("click", ()=>{ logout(); ensureCheckoutUI(); });
+  }
+
+  // payment box
+  let pay = document.querySelector(".pay-box");
+  if(!pay){
+    pay = document.createElement("div");
+    pay.className="pay-box";
+    pay.style.borderTop="1px solid var(--border-soft)";
+    pay.style.paddingTop="12px";
+    pay.style.display="grid";
+    pay.style.gap="8px";
+    wrap.appendChild(pay);
+  }
+  pay.innerHTML = `
+    <div style="font-size:.85rem;color:var(--text-main);font-weight:600;">Método de pago</div>
+    <select id="pay-method" class="qty-input" style="width:100%;">
+      <option value="card">Tarjeta (demo)</option>
+      <option value="paypal">PayPal (demo)</option>
+    </select>
+    <button class="btn-add" id="btn-pay" style="width:fit-content;">Pagar ahora</button>
+    <div style="font-size:.7rem;color:var(--text-dim);">* Demo sin cobro real. Para cobros reales integraremos Stripe/PayPal.</div>
+  `;
+  pay.querySelector("#btn-pay").addEventListener("click", ()=>{
+    const user = getUser();
+    if(!user){ alert("Inicia sesión primero"); return; }
+    const total = cartTotal();
+    if(total<=0){ alert("Tu carrito está vacío"); return; }
+    const orderId = "UZU-" + Math.random().toString(36).slice(2,8).toUpperCase();
+    alert(`Pedido ${orderId} creado (demo). Total: ` + money(total));
+    // clear cart
+    saveCart([]);
+    window.location.href = "index.html";
+  });
+}
+
+document.addEventListener("DOMContentLoaded", ensureCheckoutUI);
