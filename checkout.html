@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Checkout · UzuTCG</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+  <style>
+    .checkout-container{max-width:1100px;margin:24px auto 64px;padding:0 16px;display:grid;gap:16px;}
+    @media(min-width:1000px){.checkout-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;}}
+    .stepper{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+    .chip{padding:6px 10px;border-radius:999px;border:1px solid var(--border-soft);background:rgba(255,255,255,.03);
+      font-size:.8rem;color:var(--text-dim);}
+    .chip.active{background:var(--accent);color:#000;border-color:transparent;font-weight:700;}
+    .panel{background:var(--bg-card);border:1px solid var(--border-card);border-radius:16px;box-shadow:var(--shadow-card);padding:16px;display:grid;gap:12px;}
+    .two-cols{display:grid;gap:8px;}
+    @media(min-width:700px){.two-cols{grid-template-columns:1fr 1fr;}}
+    .input{background:#0a0f1f;border:1px solid var(--border-soft);border-radius:8px;padding:10px;color:var(--text-main);font-size:.9rem;}
+    .btn{background:var(--accent);color:#000;border:0;border-radius:8px;padding:10px 14px;font-weight:700;cursor:pointer;width:fit-content;}
+    .btn.secondary{background:#e2e8f0;color:#000;}
+    .summary{font-size:.9rem;display:grid;gap:8px;}
+    .line{display:flex;justify-content:space-between;}
+  </style>
+</head>
+<body data-page="checkout">
+
+  <header class="header">
+    <a class="brand" href="index.html">
+      <img src="img/logo.png" alt="Logo">
+      <span>UzuTCG</span>
+    </a>
+    <nav class="nav">
+      <a href="carrito.html" class="active">Carrito</a>
+      <a href="checkout.html">Checkout</a>
+    </nav>
+  </header>
+
+  <main class="checkout-container">
+    <div class="stepper">
+      <div class="chip active">1 · Datos y envío</div>
+      <div class="chip">2 · Pago</div>
+      <div class="chip">3 · Confirmación</div>
+    </div>
+    <div class="checkout-grid">
+      <section class="panel">
+        <h2 style="margin:0;font-size:1.1rem;">Tu información</h2>
+        <div class="two-cols">
+          <input class="input" id="name" placeholder="Nombre y apellidos"/>
+          <input class="input" id="email" placeholder="Email"/>
+        </div>
+        <div class="two-cols">
+          <input class="input" id="address" placeholder="Dirección"/>
+          <input class="input" id="city" placeholder="Ciudad"/>
+        </div>
+        <div class="two-cols">
+          <input class="input" id="zip" placeholder="Código Postal"/>
+          <input class="input" id="phone" placeholder="Teléfono"/>
+        </div>
+        <button class="btn" id="btn-to-pay">Continuar a pago →</button>
+      </section>
+
+      <aside class="panel">
+        <h3 style="margin:0 0 8px;">Resumen del pedido</h3>
+        <div class="summary" id="order-summary"></div>
+        <div class="line" style="font-weight:700;"><span>Total</span><span id="order-total">0.00 €</span></div>
+        <a class="btn secondary" href="carrito.html">Volver al carrito</a>
+      </aside>
+    </div>
+
+    <section class="panel" id="pay-panel" style="display:none;">
+      <h2 style="margin:0;font-size:1.1rem;">Pago</h2>
+      <select id="pay-method" class="input" style="max-width:300px;">
+        <option value="card">Tarjeta (demo)</option>
+        <option value="paypal">PayPal (demo)</option>
+      </select>
+      <button class="btn" id="btn-pay">Pagar ahora</button>
+      <div style="font-size:.75rem;color:var(--text-dim);">* Demo sin cobro real. Integraremos Stripe/PayPal después.</div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div>© 2025 UzuTCG — All rights reserved.</div>
+    <div>Este checkout es una demo. El pago real y seguimiento se integrarán más adelante.</div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script>
+    function renderSummary(){
+      const wrap = document.getElementById("order-summary");
+      const cart = getCart();
+      wrap.innerHTML = "";
+      cart.forEach(line=>{
+        const p = PRODUCTS.find(x=>x.id===line.id);
+        if(!p) return;
+        const row = document.createElement("div");
+        row.className = "line";
+        row.innerHTML = `<span>${p.name} × ${line.qty}</span><span>${money(p.price*line.qty)}</span>`;
+        wrap.appendChild(row);
+      });
+      document.getElementById("order-total").textContent = money(cartTotal());
+    }
+    document.addEventListener("DOMContentLoaded", ()=>{
+      renderSummary();
+      document.getElementById("btn-to-pay").addEventListener("click", ()=>{
+        // a real site would validate and persist these fields
+        document.getElementById("pay-panel").style.display = "grid";
+        window.scrollTo({top:document.body.scrollHeight, behavior:"smooth"});
+      });
+      document.getElementById("btn-pay").addEventListener("click", ()=>{
+        const id = "UZU-" + Math.random().toString(36).slice(2,8).toUpperCase();
+        alert("Pedido " + id + " creado (demo). Gracias por tu compra.");
+        saveCart([]);
+        window.location.href = "index.html";
+      });
+    });
+  </script>
+</body>
+</html>
