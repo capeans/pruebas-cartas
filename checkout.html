@@ -30,8 +30,8 @@
       <span>UzuTCG</span>
     </a>
     <nav class="nav">
-      <a href="carrito.html">Carrito</a>
-      <a href="checkout.html" class="active">Checkout</a>
+      <a href="carrito.html" class="active">Carrito</a>
+      <a href="checkout.html">Checkout</a>
     </nav>
   </header>
 
@@ -104,6 +104,7 @@
     document.addEventListener("DOMContentLoaded", ()=>{
       renderSummary();
       document.getElementById("btn-to-pay").addEventListener("click", ()=>{
+        // a real site would validate and persist these fields
         document.getElementById("pay-panel").style.display = "grid";
         window.scrollTo({top:document.body.scrollHeight, behavior:"smooth"});
       });

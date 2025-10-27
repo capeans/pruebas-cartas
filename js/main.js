@@ -1,16 +1,37 @@
+
 let modalOverlay;
+function bindModalClose(){
+  if(!modalOverlay) return;
+  // prevent multiple bindings
+  if(modalOverlay._bound) return;
+  modalOverlay._bound = true;
+
+  // Close on overlay click
+  modalOverlay.addEventListener("click", (e)=>{
+    if(e.target === modalOverlay) closeModal();
+  });
+  // Close on button
+  document.addEventListener("click", e => {
+    if(e.target.matches(".modal-close")) closeModal();
+  });
+}
+
 function openModal(product){
-  if(!modalOverlay){
-    modalOverlay = document.querySelector(".modal-overlay");
-  }
+  modalOverlay = document.querySelector(".modal-overlay");
   if(!modalOverlay) return;
 
-  modalOverlay.querySelector(".modal-img img").src = product.img;
-  modalOverlay.querySelector(".modal-body h3").textContent = product.name;
+  // Stop click from bubbling out of modal content
+  const modalEl = modalOverlay.querySelector(".modal");
+  if(modalEl){
+    modalEl.addEventListener("click", (e)=> e.stopPropagation());
+  }
+
+  modalOverlay.querySelector(".modal-img img").src = product.img || "";
+  modalOverlay.querySelector(".modal-body h3").textContent = product.name || "";
   modalOverlay.querySelector(".modal-body .modal-desc").textContent = product.description || "";
   modalOverlay.querySelector(".modal-body .modal-cat").textContent = product.category || "";
   modalOverlay.querySelector(".modal-body .modal-rarity").textContent = product.rarity || "-";
-  modalOverlay.querySelector(".modal-price").textContent = money(product.price);
+  modalOverlay.querySelector(".modal-price").textContent = money(product.price || 0);
 
   const stockEl = modalOverlay.querySelector(".modal-body .modal-stock");
   stockEl.textContent = product.stock > 0 ? product.stock + " ud." : "Sin stock";
@@ -18,21 +39,23 @@ function openModal(product){
 
   const addBtn = modalOverlay.querySelector(".modal-add-btn");
   const qtyInput = modalOverlay.querySelector(".modal-qty");
-  qtyInput.value = 1;
-  addBtn.onclick = () => {
-    const q = parseInt(qtyInput.value,10) || 1;
-    addToCart(product.id,q);
-  };
+  if(qtyInput) qtyInput.value = 1;
+  if(addBtn){
+    addBtn.onclick = () => {
+      const q = parseInt(qtyInput?.value || "1",10) || 1;
+      addToCart(product.id,q);
+    };
+  }
 
   modalOverlay.style.display = "flex";
+  bindModalClose();
 }
 function closeModal(){
+  modalOverlay = document.querySelector(".modal-overlay");
   if(modalOverlay){
     modalOverlay.style.display = "none";
   }
 }
-document.addEventListener("click", e => {
-  if(e.target.matches(".modal-close")) closeModal();
   if(e.target === modalOverlay) closeModal();
 });
 
@@ -252,89 +275,28 @@ function initFilterPage({typesAllowed, gridSelector}){
   apply();
 }
 
-
 function initCartPage(){
   updateCartBadge();
-  const cartRaw = getCart();
-
-  // stable order: do NOT sort, just render in stored order
-  const cart = cartRaw.slice(); // shallow copy
-
+  const cart = getCart();
   const container = document.querySelector(".cart-items");
   const totalEl = document.querySelector(".cart-total");
-  if(container) container.innerHTML = "";
+  container.innerHTML = "";
 
-  let runningTotal = 0;
-
-  cart.forEach((line, idx)=>{
+  cart.forEach(line=>{
     const p = PRODUCTS.find(x=>x.id===line.id);
     if(!p) return;
     const row = document.createElement("div");
     row.className="cart-row";
 
-    // thumb
     const th = document.createElement("div");
     th.className="cart-thumb";
-    const im=document.createElement("img");
-    im.src=p.img||"";
-    th.appendChild(im);
-    row.appendChild(th);
-
-    // info
-    const info = document.createElement("div");
-    info.style.minWidth="0";
-    info.innerHTML = `
-      <div style="font-weight:700;color:var(--text-main);font-size:.85rem;line-height:1.3;">${p.name}</div>
-      <div style="color:var(--text-dim);font-size:.7rem;line-height:1.3;">
-        ${p.category || ""} · ${p.language || "-"}
-      </div>
-    `;
-    row.appendChild(info);
-
-    // unit price
-    const uprice = document.createElement("div");
-    uprice.style.fontSize=".8rem";
-    uprice.style.fontWeight="600";
-    uprice.textContent = money(p.price||0);
-    row.appendChild(uprice);
-
-    // qty editor
-    const qwrap = document.createElement("div");
-    const qinput = document.createElement("input");
-    qinput.type="number";
-    qinput.min="1";
-    qinput.value=line.qty;
-    qinput.className="qty-input";
-    qinput.addEventListener("change",()=>{
-      const v=parseInt(qinput.value,10)||1;
-      setQty(p.id,v); // updates localStorage
-      initCartPage(); // rerender
-    });
-    qwrap.appendChild(qinput);
-    row.appendChild(qwrap);
-
-    // remove btn
-    const rmv = document.createElement("button");
-    rmv.textContent="✕";
-    rmv.style.background="none";
-    rmv.style.border="0";
-    rmv.style.color="var(--danger)";
-    rmv.style.cursor="pointer";
-    rmv.style.fontWeight="700";
-    rmv.addEventListener("click",()=>{
-      removeFromCart(p.id);
-      initCartPage();
-    });
-    row.appendChild(rmv);
-
-    if(container) container.appendChild(row);
-
-    runningTotal += (p.price||0) * line.qty;
-  });
-
-  if(totalEl) totalEl.textContent = money(runningTotal);
-}
-
+    if(p.img){
+      const im=document.createElement("img");
+      im.src=p.img;
+      th.appendChild(im);
+    } else {
+      th.textContent="No img";
+    }
     row.appendChild(th);
 
     const info = document.createElement("div");
@@ -416,78 +378,4 @@ function setUser(u){
 }
 function logout(){ localStorage.removeItem("uzutcg_user"); }
 
-function ensureCheckoutUI(){
-  if(document.body.dataset.page !== "carrito") return;
-  const wrap = document.querySelector(".cart-summary");
-  if(!wrap) return;
-
-  const user = getUser();
-  let authNode = document.querySelector(".auth-box");
-  if(!authNode){
-    authNode = document.createElement("div");
-    authNode.className = "auth-box";
-    authNode.style.borderTop = "1px solid var(--border-soft)";
-    authNode.style.paddingTop = "12px";
-    authNode.style.display = "grid";
-    authNode.style.gap = "8px";
-    wrap.insertBefore(authNode, wrap.firstChild);
-  }
-
-  if(!user){
-    authNode.innerHTML = `
-      <div style="font-size:.85rem;color:var(--text-main);font-weight:600;">Inicia sesión para pagar</div>
-      <div style="display:grid;gap:8px;">
-        <input id="login-email" type="text" placeholder="tu@email.com" class="qty-input" style="width:100%;">
-        <input id="login-name" type="text" placeholder="Tu nombre" class="qty-input" style="width:100%;">
-        <button class="btn-add" id="btn-login" style="width:fit-content;">Iniciar sesión (demo)</button>
-      </div>
-    `;
-    authNode.querySelector("#btn-login").addEventListener("click", ()=>{
-      const email = authNode.querySelector("#login-email").value.trim();
-      const name = authNode.querySelector("#login-name").value.trim();
-      if(!email || !name){ alert("Rellena email y nombre"); return; }
-      setUser({email,name});
-      ensureCheckoutUI();
-    });
-  } else {
-    authNode.innerHTML = `
-      <div style="font-size:.85rem;color:var(--text-dim);">Sesión iniciada como <span style="color:var(--text-main);font-weight:600;">${user.name}</span> (${user.email})</div>
-      <div><button class="btn-add" id="btn-logout" style="background:#e2e8f0;color:#000;">Cerrar sesión</button></div>
-    `;
-    authNode.querySelector("#btn-logout").addEventListener("click", ()=>{ logout(); ensureCheckoutUI(); });
-  }
-
-  // payment box
-  let pay = document.querySelector(".pay-box");
-  if(!pay){
-    pay = document.createElement("div");
-    pay.className="pay-box";
-    pay.style.borderTop="1px solid var(--border-soft)";
-    pay.style.paddingTop="12px";
-    pay.style.display="grid";
-    pay.style.gap="8px";
-    wrap.appendChild(pay);
-  }
-  pay.innerHTML = `
-    <div style="font-size:.85rem;color:var(--text-main);font-weight:600;">Método de pago</div>
-    <select id="pay-method" class="qty-input" style="width:100%;">
-      <option value="card">Tarjeta (demo)</option>
-      <option value="paypal">PayPal (demo)</option>
-    </select>
-    <button class="btn-add" id="btn-pay" style="width:fit-content;">Pagar ahora</button>
-    <div style="font-size:.7rem;color:var(--text-dim);">* Demo sin cobro real. Para cobros reales integraremos Stripe/PayPal.</div>
-  `;
-  pay.querySelector("#btn-pay").addEventListener("click", ()=>{
-    const user = getUser();
-    if(!user){ alert("Inicia sesión primero"); return; }
-    const total = cartTotal();
-    if(total<=0){ alert("Tu carrito está vacío"); return; }
-    const orderId = "UZU-" + Math.random().toString(36).slice(2,8).toUpperCase();
-    alert(`Pedido ${orderId} creado (demo). Total: ` + money(total));
-    // clear cart
-    saveCart([]);
-    window.location.href = "index.html";
-  });
-}
-
-document.addEventListener("DOMContentLoaded", ensureCheckoutUI);
+function ensureCheckoutUI(){}
