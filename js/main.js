@@ -252,28 +252,89 @@ function initFilterPage({typesAllowed, gridSelector}){
   apply();
 }
 
+
 function initCartPage(){
   updateCartBadge();
-  const cart = getCart();
+  const cartRaw = getCart();
+
+  // stable order: do NOT sort, just render in stored order
+  const cart = cartRaw.slice(); // shallow copy
+
   const container = document.querySelector(".cart-items");
   const totalEl = document.querySelector(".cart-total");
-  container.innerHTML = "";
+  if(container) container.innerHTML = "";
 
-  cart.forEach(line=>{
+  let runningTotal = 0;
+
+  cart.forEach((line, idx)=>{
     const p = PRODUCTS.find(x=>x.id===line.id);
     if(!p) return;
     const row = document.createElement("div");
     row.className="cart-row";
 
+    // thumb
     const th = document.createElement("div");
     th.className="cart-thumb";
-    if(p.img){
-      const im=document.createElement("img");
-      im.src=p.img;
-      th.appendChild(im);
-    } else {
-      th.textContent="No img";
-    }
+    const im=document.createElement("img");
+    im.src=p.img||"";
+    th.appendChild(im);
+    row.appendChild(th);
+
+    // info
+    const info = document.createElement("div");
+    info.style.minWidth="0";
+    info.innerHTML = `
+      <div style="font-weight:700;color:var(--text-main);font-size:.85rem;line-height:1.3;">${p.name}</div>
+      <div style="color:var(--text-dim);font-size:.7rem;line-height:1.3;">
+        ${p.category || ""} · ${p.language || "-"}
+      </div>
+    `;
+    row.appendChild(info);
+
+    // unit price
+    const uprice = document.createElement("div");
+    uprice.style.fontSize=".8rem";
+    uprice.style.fontWeight="600";
+    uprice.textContent = money(p.price||0);
+    row.appendChild(uprice);
+
+    // qty editor
+    const qwrap = document.createElement("div");
+    const qinput = document.createElement("input");
+    qinput.type="number";
+    qinput.min="1";
+    qinput.value=line.qty;
+    qinput.className="qty-input";
+    qinput.addEventListener("change",()=>{
+      const v=parseInt(qinput.value,10)||1;
+      setQty(p.id,v); // updates localStorage
+      initCartPage(); // rerender
+    });
+    qwrap.appendChild(qinput);
+    row.appendChild(qwrap);
+
+    // remove btn
+    const rmv = document.createElement("button");
+    rmv.textContent="✕";
+    rmv.style.background="none";
+    rmv.style.border="0";
+    rmv.style.color="var(--danger)";
+    rmv.style.cursor="pointer";
+    rmv.style.fontWeight="700";
+    rmv.addEventListener("click",()=>{
+      removeFromCart(p.id);
+      initCartPage();
+    });
+    row.appendChild(rmv);
+
+    if(container) container.appendChild(row);
+
+    runningTotal += (p.price||0) * line.qty;
+  });
+
+  if(totalEl) totalEl.textContent = money(runningTotal);
+}
+
     row.appendChild(th);
 
     const info = document.createElement("div");
