@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Contacto · UzuTCG</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body data-page="contacto">
+
+  <header class="header">
+    <a class="brand" href="index.html">
+      <img src="img/logo.png" alt="Logo">
+      <span>UzuTCG</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="">Inicio</a>
+      <a href="cartas.html" class="">Cartas</a>
+      <a href="cajas.html" class="">Cajas</a>
+      <a href="todo.html" class="">Todo</a>
+      <a href="otros.html" class="">Otros</a>
+      <a href="carrito.html" class="cart-link">Carrito
+        <span class="cart-count-badge">0</span>
+      </a>
+      <a href="contacto.html" class="active">Contacto</a>
+      <a href="historia.html" class="">Nuestra historia</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="info-card">
+      <h2>Contacto rápido</h2>
+      <div class="info-grid-2">
+        <form class="contact-form" onsubmit="event.preventDefault();alert('Mensaje enviado (demo)');">
+          <div class="form-field">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre"/>
+          </div>
+          <div class="form-field">
+            <label>Email</label>
+            <input type="text" placeholder="tu@email.com"/>
+          </div>
+          <div class="form-field">
+            <label>Mensaje</label>
+            <textarea placeholder="Quiero preguntar sobre..."></textarea>
+          </div>
+          <button class="btn-submit">Enviar mensaje</button>
+        </form>
+
+        <div style="font-size:.8rem;line-height:1.5;color:var(--text-dim);display:grid;gap:12px;">
+          <div>
+            <div style="color:var(--text-main);font-weight:600;font-size:.9rem;">Horario</div>
+            Lunes - Viernes<br>
+            9:00 - 18:00
+          </div>
+
+          <div>
+            <div style="color:var(--text-main);font-weight:600;font-size:.9rem;">Teléfono</div>
+            639 140 833
+          </div>
+
+          <div>
+            <div style="color:var(--text-main);font-weight:600;font-size:.9rem;">Correo</div>
+            antelocapeans@gmail.com
+          </div>
+
+          <div>
+            <div style="color:var(--text-main);font-weight:600;font-size:.9rem;">Ubicación</div>
+            Galicia, Santiago de Compostela
+          </div>
+
+          <div>
+            <div style="color:var(--text-main);font-weight:600;font-size:.9rem;">Redes</div>
+            Instagram · TikTok · Twitch (aperturas en directo)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-card">
+      <h2>Preguntas frecuentes</h2>
+      <div style="font-size:.8rem;line-height:1.5;color:var(--text-dim);display:grid;gap:12px;">
+        <div>
+          <strong style="color:var(--text-main);font-weight:600;">¿El stock es real?</strong><br>
+          Sí. Si aparece “sin stock”, no se puede comprar.
+        </div>
+        <div>
+          <strong style="color:var(--text-main);font-weight:600;">¿Abrís cajas en directo?</strong><br>
+          Sí, algunas cajas se pueden abrir en streaming. Te mandamos las cartas después.
+        </div>
+        <div>
+          <strong style="color:var(--text-main);font-weight:600;">¿Envío internacional?</strong><br>
+          De momento solo península (demo).
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>© 2025 UzuTCG — All rights reserved.</div>
+    <div>Contáctanos para colaboraciones, patrocinios o compras al por mayor.</div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>UzuTCG — Tienda de Cartas y Cajas</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body data-page="home">
+
+  <header class="header">
+    <a class="brand" href="index.html">
+      <img src="img/logo.png" alt="Logo">
+      <span>UzuTCG</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="cartas.html" class="">Cartas</a>
+      <a href="cajas.html" class="">Cajas</a>
+      <a href="todo.html" class="">Todo</a>
+      <a href="otros.html" class="">Otros</a>
+      <a href="carrito.html" class="cart-link">Carrito
+        <span class="cart-count-badge">0</span>
+      </a>
+      <a href="contacto.html" class="">Contacto</a>
+      <a href="historia.html" class="">Nuestra historia</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Cartas, cajas y accesorios de tus sagas favoritas</h1>
+        <p>Pokémon, One Piece, Dragon Ball, Digimon, Magic y más. Sellado oficial, cartas sueltas verificadas y
+           accesorios para proteger tu colección.
+        </p>
+        <a class="btn-primary" href="todo.html">Ver catálogo completo →</a>
+      </div>
+      <div class="hero-card">
+        <div>
+          <div style="font-size:1rem;font-weight:600;color:var(--text-main);margin-bottom:8px;">
+            Envío 24/48h
+          </div>
+          <div>Stock real · Seguimiento pedido · Opciones abrir en directo</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>Cajas más vendidas</h2>
+          <small>Top del mes</small>
+        </div>
+        <a class="btn-primary" href="cajas.html">Ver todas</a>
+      </div>
+      <div class="scroller" id="scroller-best-boxes"></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>Cartas más vendidas</h2>
+          <small>Singles que vuelan</small>
+        </div>
+        <a class="btn-primary" href="cartas.html">Ver todas</a>
+      </div>
+      <div class="scroller" id="scroller-best-cards"></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>Novedades</h2>
+          <small>Lo último que ha llegado</small>
+        </div>
+        <a class="btn-primary" href="todo.html">Ver novedades</a>
+      </div>
+      <div class="scroller" id="scroller-new"></div>
+    </section>
+
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal-overlay">
+    <div class="modal">
+      <button class="modal-close">✕</button>
+      <div class="modal-img"><img src="" alt=""></div>
+      <div class="modal-body">
+        <h3></h3>
+        <div class="modal-desc"></div>
+        <div style="font-size:.75rem;color:var(--text-dim);line-height:1.4;">
+          <strong>Categoría:</strong> <span class="modal-cat"></span><br>
+          <strong>Rareza:</strong> <span class="modal-rarity"></span><br>
+          <strong>Stock:</strong> <span class="modal-stock badge"></span>
+        </div>
+        <div class="modal-price"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <input type="number" min="1" value="1" class="qty-input modal-qty">
+          <button class="btn-add modal-add-btn">Añadir al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="footer">
+    <div>© 2025 UzuTCG — All rights reserved.</div>
+    <div>Precios con IVA incluido. Stock sujeto a disponibilidad. Las imágenes pueden diferir del producto final.</div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

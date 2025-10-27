@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Todo el catálogo · UzuTCG</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body data-page="todo">
+
+  <header class="header">
+    <a class="brand" href="index.html">
+      <img src="img/logo.png" alt="Logo">
+      <span>UzuTCG</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="">Inicio</a>
+      <a href="cartas.html" class="">Cartas</a>
+      <a href="cajas.html" class="">Cajas</a>
+      <a href="todo.html" class="active">Todo</a>
+      <a href="otros.html" class="">Otros</a>
+      <a href="carrito.html" class="cart-link">Carrito
+        <span class="cart-count-badge">0</span>
+      </a>
+      <a href="contacto.html" class="">Contacto</a>
+      <a href="historia.html" class="">Nuestra historia</a>
+    </nav>
+  </header>
+
+  <main class="page layout-shop">
+    <aside class="filters-panel">
+      <h3>Filtrar todo</h3>
+
+      <div class="filter-block">
+        <label for="filter-text">Buscar</label>
+        <input id="filter-text" type="text" placeholder="Nombre, saga..."/>
+      </div>
+
+      <div class="filter-block">
+        <label for="filter-cat">Categoría</label>
+        <select id="filter-cat">
+          <option value="">Todas</option>
+          <option>Pokemon</option>
+          <option>One Piece</option>
+          <option>Naruto</option>
+          <option>Dragon Ball</option>
+          <option>Magic</option>
+          <option>Digimon</option>
+          <option>Spiderman</option>
+          <option>Metazco</option>
+          <option>Otros</option>
+        </select>
+      </div>
+
+      <div class="filter-block">
+        <label for="filter-rarity">Rareza</label>
+        <input id="filter-rarity" type="text" placeholder="UR, Secret, ..."/>
+      </div>
+
+      <div class="filter-block">
+        <label for="filter-min">Precio mínimo (€)</label>
+        <input id="filter-min" type="number" min="0" value="0"/>
+        <label for="filter-max">Precio máximo (€)</label>
+        <input id="filter-max" type="number" min="0" value="999"/>
+      </div>
+
+      <div class="filter-block">
+        <label for="filter-stock">
+          <input id="filter-stock" type="checkbox"/> Solo en stock
+        </label>
+        <label for="filter-new">
+          <input id="filter-new" type="checkbox"/> Solo novedades
+        </label>
+      </div>
+
+      <div style="font-size:.7rem;color:var(--text-dim);line-height:1.4;">
+        Añade productos al carrito desde aquí. Pulsa la imagen para ver en grande.
+      </div>
+    </aside>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>Todo el catálogo</h2>
+          <small>Cajas + cartas juntas</small>
+        </div>
+      </div>
+
+      <div class="products-grid" id="products-grid"></div>
+    </section>
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal-overlay">
+    <div class="modal">
+      <button class="modal-close">✕</button>
+      <div class="modal-img"><img src="" alt=""></div>
+      <div class="modal-body">
+        <h3></h3>
+        <div class="modal-desc"></div>
+        <div style="font-size:.75rem;color:var(--text-dim);line-height:1.4;">
+          <strong>Categoría:</strong> <span class="modal-cat"></span><br>
+          <strong>Rareza:</strong> <span class="modal-rarity"></span><br>
+          <strong>Stock:</strong> <span class="modal-stock badge"></span>
+        </div>
+        <div class="modal-price"></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <input type="number" min="1" value="1" class="qty-input modal-qty">
+          <button class="btn-add modal-add-btn">Añadir al carrito</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="footer">
+    <div>© 2025 UzuTCG — All rights reserved.</div>
+    <div>Precios con IVA incluido. Stock sujeto a disponibilidad. Las imágenes pueden diferir del producto final.</div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Carrito · UzuTCG</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body data-page="carrito">
+
+  <header class="header">
+    <a class="brand" href="index.html">
+      <img src="img/logo.png" alt="Logo">
+      <span>UzuTCG</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="">Inicio</a>
+      <a href="cartas.html" class="">Cartas</a>
+      <a href="cajas.html" class="">Cajas</a>
+      <a href="todo.html" class="">Todo</a>
+      <a href="otros.html" class="">Otros</a>
+      <a href="carrito.html" class="active cart-link">Carrito
+        <span class="cart-count-badge">0</span>
+      </a>
+      <a href="contacto.html" class="">Contacto</a>
+      <a href="historia.html" class="">Nuestra historia</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="cart-wrapper">
+      <h1 class="cart-title">Tu carrito</h1>
+      <div class="cart-items">
+      </div>
+
+      <div class="cart-summary">
+        <div class="total-line">
+          <span>Total</span>
+          <span class="cart-total">0.00 €</span>
+        </div>
+        <div style="font-size:.7rem;color:var(--text-dim);line-height:1.4;">
+          Para finalizar la compra tendrás que iniciar sesión / registrarte
+          y darnos tu dirección de envío. Aquí podrás ver el número de seguimiento.
+        </div>
+        <a class="checkout-btn" href="#">Continuar al pago (demo)</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div>© 2025 UzuTCG — All rights reserved.</div>
+    <div>Este checkout es una demo. El pago real y seguimiento se integrarán más adelante.</div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
