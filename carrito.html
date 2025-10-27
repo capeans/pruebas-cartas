@@ -27,24 +27,37 @@
     </nav>
   </header>
 
+  
   <main class="page">
     <div class="cart-wrapper">
-      <h1 class="cart-title">Tu carrito</h1>
+      <h1 class="cart-title" style="margin:0;font-size:1.3rem;font-weight:600;color:var(--text-main);">
+        Tu carrito
+      </h1>
+
       <div class="cart-items"></div>
 
       <div class="cart-summary">
-        <div class="total-line">
-          <span>Total</span>
-          <span class="cart-total">0.00 €</span>
+        <div class="order-total-box">
+          <div class="order-line total">
+            <span>Total</span>
+            <span class="cart-total">0.00 €</span>
+          </div>
+          <div style="font-size:.75rem;color:var(--text-dim);line-height:1.4;">
+            Finaliza la compra para darnos la dirección y el método de pago.
+            En el siguiente paso verás un número de pedido (demo).
+          </div>
         </div>
-        <div style="font-size:.7rem;color:var(--text-dim);line-height:1.4;">
-          Para finalizar la compra tendrás que iniciar sesión / registrarte
-          y darnos tu dirección de envío. Aquí podrás ver el número de seguimiento.
+
+        <div class="cart-ctas">
+          <a class="btn-outline" href="index.html">← Seguir comprando</a>
+          <a class="checkout-btn" style="flex:0 0 auto;" href="checkout.html">
+            Finalizar compra →
+          </a>
         </div>
-        <a class="checkout-btn" href="#">Continuar al pago (demo)</a>
       </div>
     </div>
   </main>
+
 
   <footer class="footer">
     <div>© 2025 UzuTCG — All rights reserved.</div>
